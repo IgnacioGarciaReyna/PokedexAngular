@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
 
@@ -12,7 +12,8 @@ export class PokemonCardsComponent implements OnInit {
 
   constructor(private _pokemonService: PokemonService) {
     this._pokemonService.getPokemons().subscribe({
-      next: (pokemon: any) => {
+      next: (pokemon: IPokemon | any) => {
+        console.log(pokemon);
         this.pokemonList.push(pokemon);
       },
     });

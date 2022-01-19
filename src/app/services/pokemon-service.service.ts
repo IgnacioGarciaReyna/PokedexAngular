@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { PokemonResponse } from '../interfaces/pokemonResponse.interface';
 import { concatMap, pluck } from 'rxjs/operators';
 import { from } from 'rxjs';
+import { IPokemon } from '../interfaces/IPokemon.interface';
 
 @Injectable({
   providedIn: 'root',
