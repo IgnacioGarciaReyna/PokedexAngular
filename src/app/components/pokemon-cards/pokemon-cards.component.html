@@ -2,12 +2,14 @@
   <div class="container">
     <div class="card" *ngFor="let pokemon of pokemonList">
       <img [src]="pokemon.sprites.front_default" class="card-img" />
-      <div class="card-footer">
-        <p>{{ pokemon.name }}</p>
-        <p>{{ pokemon.id }}</p>
+      <div class="card-info">
+        <p class="card-name">{{ pokemon.name }}</p>
+        <p>#{{ pokemon.id }}</p>
       </div>
-      <div class="card-types" *ngFor="let type of pokemon.types">
-        <p>{{ type.type.name }}</p>
+      <div class="card-typesContainer">
+        <div class="type" *ngFor="let type of pokemon.types">
+          <p class="card-type">{{ type.type.name }}</p>
+        </div>
       </div>
     </div>
   </div>
