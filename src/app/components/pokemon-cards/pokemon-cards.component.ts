@@ -9,15 +9,32 @@ import { PokemonService } from 'src/app/services/pokemon-service.service';
 })
 export class PokemonCardsComponent implements OnInit {
   public pokemonList: IPokemon[] = [];
+  private page: number = 0;
 
   constructor(private _pokemonService: PokemonService) {
-    this._pokemonService.getPokemons().subscribe({
+    this._pokemonService.getPokemons(this.page).subscribe({
       next: (pokemon: IPokemon | any) => {
-        console.log(pokemon);
         this.pokemonList.push(pokemon);
       },
     });
   }
 
   ngOnInit(): void {}
+
+  loadNewPage(event: any) {
+    if (event.target.value == 'next') {
+      this.page++;
+    } else if (event.target.value == 'previous' && this.page
+    > 0) {
+      this.page--;
+    }
+
+    this.pokemonList = [];
+
+    this._pokemonService.getPokemons(this.page).subscribe({
+      next: (pokemon: IPokemon | any) => {
+        this.pokemonList.push(pokemon);
+      },
+    });
+  }
 }

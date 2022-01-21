@@ -1,10 +1,11 @@
-.container{
+.cards-container{
     width: 80vw;
     height: auto;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-around initial;
+    align-items: flex-start;
 }
 
 .card{
@@ -48,4 +49,17 @@
 
 .card-type{
     text-transform: capitalize;
+}
+
+.pagination-container{
+    width: 80vw;
+    border: solid 1px black;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.pagination-button{
+    height: 40px;
+    width: 60px;
 }

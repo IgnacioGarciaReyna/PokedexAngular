@@ -10,11 +10,12 @@ import { IPokemon } from '../interfaces/IPokemon.interface';
 })
 export class PokemonService {
   private offset: number = 500;
-  private limit: number = 50;
+  private limit: number = 8;
 
   constructor(private _http: HttpClient) {}
 
-  getPokemons() {
+  getPokemons(page: number) {
+    this.offset = page * 8;
     let url = `https://pokeapi.co/api/v2/pokemon-form/?offset=${this.offset}&limit=${this.limit}`;
 
     return this._http.get<PokemonResponse>(url).pipe(
