@@ -8,7 +8,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'pokemons', component: PokemonCardsComponent },
   { path: 'about', component: AboutAPIComponent },
+  { path: '**', pathMatch:'full', redirectTo: 'home' }
 ];
+
+export const appRouting = RouterModule.forRoot(routes);
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

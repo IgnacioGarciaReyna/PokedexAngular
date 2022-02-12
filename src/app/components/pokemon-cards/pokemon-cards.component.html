@@ -1,9 +1,12 @@
 <ng-container>
   <div class="container">
+    <div class="loadingSpinner" *ngIf="loadingSpinner">
+      <h1>Loading...</h1>
+    </div>
     <div class="search-container">
       <input type="search" [formControl]="searchPokemonInput" placeholder="Search by name">
     </div>
-    <div class="cards-pagination">
+    <div class="cards-pagination" *ngIf="!loadingSpinner">
       <button class="pagination-button" value="previous" (click)="loadNewPage($event)">Atras</button>
       <div class="cards-container">
         <div class="card" *ngFor="let pokemon of pokemonList">

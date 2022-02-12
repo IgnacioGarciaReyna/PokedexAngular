@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { switchMap, tap } from 'rxjs/operators';
+import { delay, switchMap, tap } from 'rxjs/operators';
 import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
 
@@ -13,6 +13,9 @@ export class PokemonCardsComponent implements OnInit {
   //Lista donde se guardaran los pokemons a mostrar
   public pokemonList: IPokemon[] = [];
 
+  //Boleano para el spinner
+  public loadingSpinner: boolean = false;
+
   //Página actual
   private page: number = 0;
 
@@ -23,8 +26,12 @@ export class PokemonCardsComponent implements OnInit {
     //Metodo que guarda los Pokemons en la pokemonList
     this._pokemonService.getPokemons(this.page).subscribe({
       next: (pokemon: IPokemon | any) => {
+        this.loadingSpinner = true;
         this.pokemonList.push(pokemon);
       },
+      complete: () => {
+        this.loadingSpinner = false;
+      }
     });
   }
 
@@ -32,8 +39,10 @@ export class PokemonCardsComponent implements OnInit {
     //Metodo del search
     this.searchPokemonInput.valueChanges
       .pipe(
+        delay(1500),
         tap({
           next: () => {
+            this.loadingSpinner = true;
             this.pokemonList = [];
           },
         }),
@@ -45,6 +54,7 @@ export class PokemonCardsComponent implements OnInit {
       .subscribe({
         next: (pokemon: IPokemon) => {
           this.pokemonList.push(pokemon);
+          this.loadingSpinner = false;
         },
       });
   }
@@ -57,12 +67,16 @@ export class PokemonCardsComponent implements OnInit {
       this.page--;
     }
 
+    this.loadingSpinner = true;
     this.pokemonList = [];
 
     this._pokemonService.getPokemons(this.page).subscribe({
       next: (pokemon: IPokemon | any) => {
         this.pokemonList.push(pokemon);
       },
+      complete: () => {
+        this.loadingSpinner = false;
+      }
     });
   }
 }
