@@ -1,21 +1,24 @@
 <ng-container>
   <div class="container">
-    <div class="cards-container">
-      <div class="card" *ngFor="let pokemon of pokemonList">
-        <img [src]="pokemon.sprites.front_default" class="card-img" />
-        <div class="card-info">
-          <p class="card-name">{{ pokemon.name }}</p>
-          <p>#{{ pokemon.id }}</p>
-        </div>
-        <div class="card-typesContainer">
-          <div class="type" *ngFor="let type of pokemon.types">
-            <p class="card-type">{{ type.type.name }}</p>
+    <div class="search-container">
+      <input type="search" [formControl]="searchPokemonInput" placeholder="Search by name">
+    </div>
+    <div class="cards-pagination">
+      <button class="pagination-button" value="previous" (click)="loadNewPage($event)">Atras</button>
+      <div class="cards-container">
+        <div class="card" *ngFor="let pokemon of pokemonList">
+          <img [src]="pokemon.sprites.front_default" class="card-img" />
+          <div class="card-info">
+            <p class="card-name">{{ pokemon.name }}</p>
+            <p>#{{ pokemon.id }}</p>
+          </div>
+          <div class="card-typesContainer">
+            <div class="type" *ngFor="let type of pokemon.types">
+              <p class="card-type">{{ type.type.name }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="pagination-container">
-      <button class="pagination-button" value="previous" (click)="loadNewPage($event)">Atras</button>
       <button class="pagination-button" value="next" (click)="loadNewPage($event)">Adelante</button>
     </div>
   </div>

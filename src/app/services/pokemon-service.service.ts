@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PokemonResponse } from '../interfaces/pokemonResponse.interface';
-import { concatMap, pluck } from 'rxjs/operators';
-import { from } from 'rxjs';
+import { PokemonResponse, PokemonResults } from '../interfaces/pokemonResponse.interface';
+import { concatMap, mergeMap, pluck } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
 import { IPokemon } from '../interfaces/IPokemon.interface';
 
 @Injectable({
@@ -14,7 +14,8 @@ export class PokemonService {
 
   constructor(private _http: HttpClient) {}
 
-  getPokemons(page: number) {
+  //Metodo que obtiene 8 pokemons y pide la página actual
+  getPokemons(page: number): Observable<any> {
     this.offset = page * 8;
     let url = `https://pokeapi.co/api/v2/pokemon-form/?offset=${this.offset}&limit=${this.limit}`;
 
@@ -26,5 +27,11 @@ export class PokemonService {
         )
       )
     );
+  }
+
+  //Método para obtener un pokemon por su nombre
+  getPokemonByName(entry: string): Observable<PokemonResponse> {
+    let url = `http://pokeapi.co/api/v2/pokemon/${entry}`;
+    return this._http.get<PokemonResponse>(url);
   }
 }
