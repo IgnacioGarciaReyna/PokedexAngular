@@ -6,7 +6,7 @@
     <div class="loadingSpinner" *ngIf="loadingSpinner">
       <h1>Loading...</h1>
     </div>
-    <div class="cards-pagination" *ngIf="!loadingSpinner">
+    <div class="cards-pagination fadeIn" *ngIf="!loadingSpinner">
       <button class="pagination-button" value="previous" (click)="loadNewPage($event)">Atras</button>
       <div class="cards-container">
         <div class="card" *ngFor="let pokemon of pokemonList">
@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-      <button class="pagination-button" value="next" (click)="loadNewPage($event)">Adelante</button>
+      <button class="pagination-button" value="next" (click)="loadNewPage($event)">Siguiente</button>
     </div>
   </div>
 </ng-container>
