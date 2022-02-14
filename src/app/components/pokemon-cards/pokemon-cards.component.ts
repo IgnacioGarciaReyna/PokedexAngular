@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { delay, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
 
@@ -39,7 +39,7 @@ export class PokemonCardsComponent implements OnInit {
     //Metodo del search
     this.searchPokemonInput.valueChanges
       .pipe(
-        delay(1500),
+        debounceTime(1500),
         tap({
           next: () => {
             this.loadingSpinner = true;
