@@ -29,6 +29,21 @@ export class PokemonService {
     );
   }
 
+ 
+  //Método que trae todos los nombres de los pokemons
+  getPokemonsNames() {
+    let url = `https://pokeapi.co/api/v2/pokemon-form/?offset=0&limit=800`;
+
+    return this._http.get<PokemonResponse>(url).pipe(
+      pluck('results'),
+      concatMap((pokemonList) =>
+        from(pokemonList).pipe(
+          mergeMap((pokemon) => this._http.get(pokemon.url))
+        )
+      )
+    );
+  }
+
   //Método para obtener un pokemon por su nombre
   getPokemonByName(entry: string): Observable<PokemonResponse> {
     let url = `http://pokeapi.co/api/v2/pokemon/${entry}`;
