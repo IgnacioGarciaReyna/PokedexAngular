@@ -11,16 +11,15 @@
           {{ name }}
         </option>
       </select> -->
-
-      <label for="exampleDataList" class="form-label">Datalist example</label>
       <input
         [formControl]="searchPokemonInput"
         class="form-control"
-        list="datalistOptions"
-        id="exampleDataList"
+        list="namesListOptions"
+        id="searchPokemons"
         placeholder="Type to search..."
+        type="search"
       />
-      <datalist id="datalistOptions">
+      <datalist id="namesListOptions">
         <option [value]="name" *ngFor="let name of namesList">
           {{ name }}
         </option>

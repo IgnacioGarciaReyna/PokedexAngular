@@ -106,3 +106,14 @@
   color: aliceblue;
   cursor: pointer;
 }
+
+.search-container {
+  position: absolute;
+  top: 140px;
+  left: 270px;
+}
+
+#searchPokemons{
+  height: 30px;
+  width: 200px;
+}

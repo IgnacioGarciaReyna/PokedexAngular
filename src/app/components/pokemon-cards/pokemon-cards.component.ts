@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, delay, map, switchMap, tap } from 'rxjs/operators';
 import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonResponse } from 'src/app/interfaces/pokemonResponse.interface';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
@@ -26,6 +26,10 @@ export class PokemonCardsComponent implements OnInit {
   //Array de nombres de pokemons
   public namesList: string[] = [];
 
+  //Opciones filtradas del search
+  public filteredOptions: string[] = [];
+  public finalOptions: string[] = [];
+
   constructor(private _pokemonService: PokemonService) {
     //Metodo que guarda los Pokemons en la pokemonList
     this._pokemonService.getPokemons(this.page).subscribe({
@@ -49,7 +53,6 @@ export class PokemonCardsComponent implements OnInit {
     //Método del search
     this.searchPokemonInput.valueChanges
       .pipe(
-        tap(console.log),
         debounceTime(1500),
         tap({
           next: () => {
@@ -57,19 +60,24 @@ export class PokemonCardsComponent implements OnInit {
             this.pokemonList = [];
           },
         }),
+        map((entry: string) => {
+          this.filteredOptions = this.namesList.filter((pokemonName) =>
+            pokemonName.toLowerCase().includes(entry.toLowerCase())
+          );
+          this.filteredOptions.map((option: string) =>
+            this._pokemonService.getPokemonByName(option.toLocaleLowerCase())
+          );
+          return entry;
+        }),
         switchMap((entry: string) => {
-          if(entry.length > 3) {
-            console.log("entry es mayor a 3")
-          }
-
-
-
-
-          if (entry !== '')
+          if (entry == this.filteredOptions.find((option) => option == entry))
             return this._pokemonService.getPokemonByName(
               entry.toLocaleLowerCase()
             );
           return this._pokemonService.getPokemons(this.page);
+        }),
+        tap({
+          error: console.log,
         })
       )
       .subscribe({

@@ -24,6 +24,10 @@
     justify-content: center;
 }
 
+.logo-container img:hover {
+    cursor: pointer;
+}
+
 
 .header {
     width: 50%;
