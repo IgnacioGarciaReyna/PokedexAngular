@@ -10,9 +10,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutAPIComponent } from './components/about-api/about-api.component';
+import { BioPokemonComponent } from './components/bio-pokemon/bio-pokemon.component';
 
 @NgModule({
-  declarations: [AppComponent, PokemonCardsComponent, HeaderComponent, HomeComponent, FooterComponent, AboutAPIComponent],
+  declarations: [AppComponent, PokemonCardsComponent, HeaderComponent, HomeComponent, FooterComponent, AboutAPIComponent, BioPokemonComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

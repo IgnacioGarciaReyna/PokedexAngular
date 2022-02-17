@@ -16,7 +16,7 @@
         class="form-control"
         list="namesListOptions"
         id="searchPokemons"
-        placeholder="Type to search..."
+        placeholder="Buscá un pokemon..."
         type="search"
       />
       <datalist id="namesListOptions">
@@ -38,7 +38,7 @@
         Atras
       </button>
       <div class="cards-container">
-        <div class="card" *ngFor="let pokemon of pokemonList">
+        <div class="card fadeIn" *ngFor="let pokemon of pokemonList" (click)="goToBio(pokemon.name)">
           <img [src]="pokemon.sprites.front_default" class="card-img" />
           <div class="card-info">
             <p class="card-name">{{ pokemon.name }}</p>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { debounceTime, delay, map, switchMap, tap } from 'rxjs/operators';
 import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonResponse } from 'src/app/interfaces/pokemonResponse.interface';
@@ -30,7 +31,10 @@ export class PokemonCardsComponent implements OnInit {
   public filteredOptions: string[] = [];
   public finalOptions: string[] = [];
 
-  constructor(private _pokemonService: PokemonService) {
+  constructor(
+    private _pokemonService: PokemonService,
+    private _router: Router
+  ) {
     //Metodo que guarda los Pokemons en la pokemonList
     this._pokemonService.getPokemons(this.page).subscribe({
       next: (pokemon: IPokemon | any) => {
@@ -47,7 +51,6 @@ export class PokemonCardsComponent implements OnInit {
     //Llamado al método que trae los nombres de los pokemons para el autocomplete del search
     this._pokemonService.getPokemonsNames().subscribe({
       next: (pokemon: IPokemon | any) => this.namesList.push(pokemon.name),
-      complete: () => console.log(this.namesList),
     });
 
     //Método del search
@@ -107,5 +110,10 @@ export class PokemonCardsComponent implements OnInit {
         this.loadingSpinner = false;
       },
     });
+  }
+
+  //Metodo que te lleva a la bio del pokemon
+  goToBio(name: string) {
+    this._router.navigate(['bio',name]);
   }
 }
