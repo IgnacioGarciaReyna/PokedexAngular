@@ -39,6 +39,7 @@ export class PokemonCardsComponent implements OnInit {
     this._pokemonService.getPokemons(this.page).subscribe({
       next: (pokemon: IPokemon | any) => {
         this.loadingSpinner = true;
+        console.log(pokemon);
         this.pokemonList.push(pokemon);
       },
       complete: () => {
@@ -114,6 +115,6 @@ export class PokemonCardsComponent implements OnInit {
 
   //Metodo que te lleva a la bio del pokemon
   goToBio(name: string) {
-    this._router.navigate(['bio',name]);
+    this._router.navigate(['bio', name]);
   }
 }

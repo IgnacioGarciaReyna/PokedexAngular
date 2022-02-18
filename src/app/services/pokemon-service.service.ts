@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PokemonResponse, PokemonResults } from '../interfaces/pokemonResponse.interface';
+import {
+  PokemonResponse,
+  PokemonResults,
+} from '../interfaces/pokemonResponse.interface';
 import { concatMap, mergeMap, pluck } from 'rxjs/operators';
 import { from, Observable } from 'rxjs';
 import { IPokemon } from '../interfaces/IPokemon.interface';
@@ -29,7 +32,6 @@ export class PokemonService {
     );
   }
 
- 
   //Método que trae todos los nombres de los pokemons
   getPokemonsNames() {
     let url = `https://pokeapi.co/api/v2/pokemon-form/?offset=0&limit=800`;

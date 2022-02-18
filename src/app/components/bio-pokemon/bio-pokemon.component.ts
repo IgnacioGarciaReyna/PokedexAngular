@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
+import { IPokemon, IPokemonURL } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { PokemonService } from 'src/app/services/pokemon-service.service';
   styleUrls: ['./bio-pokemon.component.css'],
 })
 export class BioPokemonComponent implements OnInit {
-  public pokemon: IPokemon | undefined = undefined;
+  public pokemon: IPokemonURL | undefined = undefined;
 
   constructor(
     public _pokemonService: PokemonService,
@@ -17,7 +17,7 @@ export class BioPokemonComponent implements OnInit {
   ) {
     let pokemonName: string = _activatedRoute.snapshot.params['pokemonName'];
     this._pokemonService.getPokemonByName(pokemonName).subscribe({
-      next: (object: IPokemon | any) => (this.pokemon = object),
+      next: (object: IPokemonURL | any) => (this.pokemon = object),
       complete: () => console.log(this.pokemon),
     });
   }
