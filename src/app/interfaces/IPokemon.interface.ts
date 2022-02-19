@@ -1,3 +1,5 @@
+import { PokemonResults } from "./pokemonResponse.interface";
+
 export interface IPokemon {
   form_name: string;
   form_names: any[];
@@ -41,7 +43,7 @@ interface Pokemon {
 export interface IPokemonURL {
   abilities: Ability2[];
   base_experience: number;
-  forms: Ability[];
+  forms: PokemonResults[];
   game_indices: Gameindex[];
   height: number;
   held_items: any[];
@@ -52,7 +54,7 @@ export interface IPokemonURL {
   name: string;
   order: number;
   past_types: any[];
-  species: Ability;
+  species: PokemonResults;
   sprites: Sprites;
   stats: Stat[];
   types: Type[];
@@ -61,13 +63,13 @@ export interface IPokemonURL {
 
 interface Type {
   slot: number;
-  type: Ability;
+  type: PokemonResults;
 }
 
 interface Stat {
   base_stat: number;
   effort: number;
-  stat: Ability;
+  stat: PokemonResults;
 }
 
 interface Sprites {
@@ -221,28 +223,28 @@ interface Dreamworld {
 }
 
 interface Move {
-  move: Ability;
+  move: PokemonResults;
   version_group_details: Versiongroupdetail[];
 }
 
 interface Versiongroupdetail {
   level_learned_at: number;
-  move_learn_method: Ability;
-  version_group: Ability;
+  move_learn_method: PokemonResults;
+  version_group: PokemonResults;
 }
 
 interface Gameindex {
   game_index: number;
-  version: Ability;
+  version: PokemonResults;
 }
 
 interface Ability2 {
-  ability: Ability;
+  ability: PokemonResults;
   is_hidden: boolean;
   slot: number;
 }
 
-interface Ability {
-  name: string;
-  url: string;
-}
+// interface Ability {
+//   name: string;
+//   url: string;
+// }
