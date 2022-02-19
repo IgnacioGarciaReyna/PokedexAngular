@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IEvolutionChain } from 'src/app/interfaces/evolutionChain.interface';
 import { IPokemon, IPokemonURL } from 'src/app/interfaces/IPokemon.interface';
 import { ISpecies } from 'src/app/interfaces/pokemonSpecies.interface';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
@@ -16,6 +17,9 @@ export class BioPokemonComponent implements OnInit {
   public isLegendary: string = ' ';
   public isMythical: string = ' ';
   public hasDenderDifferences: string = ' ';
+
+  //Evolución
+  public evolutionChain: IEvolutionChain | any = undefined;
 
   constructor(
     public _pokemonService: PokemonService,
@@ -38,11 +42,21 @@ export class BioPokemonComponent implements OnInit {
                 (this.isMythical = _pokemonService.characteristicsConditional(
                   this.pokemonSpecies.is_mythical
                 )),
-                (this.hasDenderDifferences = _pokemonService.characteristicsConditional(
-                  this.pokemonSpecies.has_gender_differences
-                )),
+                (this.hasDenderDifferences =
+                  _pokemonService.characteristicsConditional(
+                    this.pokemonSpecies.has_gender_differences
+                  )),
                 console.log(this.pokemonSpecies);
             },
+            complete: () =>
+              _pokemonService
+                .getUrl(this.pokemonSpecies.evolution_chain.url)
+                .subscribe({
+                  next: (object) => {
+                    (this.evolutionChain = object),
+                      console.log(this.evolutionChain);
+                  },
+                }),
           });
       },
     });

@@ -1,14 +1,47 @@
 <div class="container">
   <div class="column">
-    <div class="name">
-      <p>{{ pokemon?.id }}</p>
-      <h1>{{ pokemon?.name | titlecase }}</h1>
+    <div class="name-container">
+      <p class="pokemon-number">#{{ pokemon?.id }}</p>
+      <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>
     </div>
     <div class="pictures">
-      <img [src]="pokemon?.sprites?.front_default" alt="" srcset="" />
-      <img [src]="pokemon?.sprites?.back_default" alt="" srcset="" />
-      <img [src]="pokemon?.sprites?.front_shiny" alt="" srcset="" />
-      <img [src]="pokemon?.sprites?.back_shiny" alt="" srcset="" />
+      <div class="picture-column">
+        <img
+          class="img-pokemon"
+          [src]="pokemon?.sprites?.front_default"
+          alt=""
+          srcset=""
+        />
+        <img
+          class="img-pokemon"
+          [src]="pokemon?.sprites?.front_shiny"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div class="picture-column">
+        <img
+          class="img-pokemon"
+          [src]="pokemon?.sprites?.back_default"
+          alt=""
+          srcset=""
+        />
+
+        <img
+          class="img-pokemon"
+          [src]="pokemon?.sprites?.back_shiny"
+          alt=""
+          srcset=""
+        />
+      </div>
+    </div>
+    
+
+    <div class="abilities">
+      <h4>Abilities:</h4>
+      <p *ngFor="let ability of pokemon?.abilities">
+        {{ ability.ability.name | titlecase }}
+      </p>
     </div>
     <div class="types">
       <h4>Types:</h4>
@@ -43,12 +76,30 @@
     </div>
   </div>
   <div class="column">
+    <div class="evolutions-container">
+      <div class="evolutions" *ngIf="pokemonSpecies?.evolves_from_species !== null">
+        <h4>Es la evolución de:</h4>
+        <a href="bio/{{ pokemonSpecies?.evolves_from_species.name }}">{{
+          pokemonSpecies?.evolves_from_species.name | titlecase
+        }}</a>
+      </div>
+      <div class="evolutions" *ngIf="evolutionChain?.chain.species !== null">
+        <div *ngFor="let evolves_to of evolutionChain?.chain.evolves_to">
+          <div *ngFor="let evolution of evolves_to.evolves_to">
+            <h4>Evoluciona a:</h4>
+            <a href="bio/{{ evolution.species.name }}">{{
+              evolution.species.name | titlecase
+            }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="stats">
       <h3>Stats:</h3>
       <div class="stats-container">
         <div class="stat-column" *ngFor="let stats of pokemon?.stats">
           <p>{{ stats?.stat?.name | titlecase }}</p>
-          
+
           <ul class="slot-container">
             <li
               class="empty-slot"
