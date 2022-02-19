@@ -51,4 +51,16 @@ export class PokemonService {
     let url = `http://pokeapi.co/api/v2/pokemon/${entry}`;
     return this._http.get<PokemonResponse>(url);
   }
+
+  getUrl(pokemonUrl: string | any) {
+    return this._http.get(pokemonUrl);
+  }
+
+  characteristicsConditional(boolean: boolean) {
+    if (boolean == false) {
+      return "No"
+    } else {
+      return "Si"
+    }
+  }
 }
