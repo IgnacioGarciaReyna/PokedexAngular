@@ -35,47 +35,7 @@
         />
       </div>
     </div>
-    
 
-    <div class="abilities">
-      <h4>Abilities:</h4>
-      <p *ngFor="let ability of pokemon?.abilities">
-        {{ ability.ability.name | titlecase }}
-      </p>
-    </div>
-    <div class="types">
-      <h4>Types:</h4>
-      <p *ngFor="let type of pokemon?.types">
-        {{ type.type.name | titlecase }}
-      </p>
-    </div>
-    <div class="egg-groups">
-      <h4>Egg Groups:</h4>
-      <p *ngFor="let group of pokemonSpecies?.egg_groups">
-        {{ group?.name | titlecase }}
-      </p>
-    </div>
-    <div class="generation">
-      <h4>Generation:</h4>
-      <p>{{ pokemonSpecies?.generation.name | titlecase }}</p>
-    </div>
-    <div class="habitat">
-      <h4>Habitat:</h4>
-      <p>{{ pokemonSpecies?.habitat.name | titlecase }}</p>
-    </div>
-    <div class="growth-rate">
-      <h4>growth rate (tasa de crecimiento):</h4>
-      <p>{{ pokemonSpecies?.growth_rate.name | titlecase }}</p>
-    </div>
-    <div class="Otros">
-      <h4>Otros:</h4>
-      <p>Es bebe? : {{ isBaby }}</p>
-      <p>Es legendario? : {{ isLegendary }}</p>
-      <p>Es mítico? : {{ isMythical }}</p>
-      <p>Tiene diferencias de género? : {{ hasDenderDifferences }}</p>
-    </div>
-  </div>
-  <div class="column">
     <div class="evolutions-container">
       <div class="evolutions" *ngIf="pokemonSpecies?.evolves_from_species !== null">
         <h4>Es la evolución de:</h4>
@@ -94,6 +54,50 @@
         </div>
       </div>
     </div>
+    
+
+    <div class="pokemon-info-container">
+      <div class="abilities pokemon-info">
+        <h4>Abilities:</h4>
+        <p *ngFor="let ability of pokemon?.abilities">
+          {{ ability.ability.name | titlecase }}
+        </p>
+      </div>
+      <div class="types pokemon-info">
+        <h4>Types:</h4>
+        <p *ngFor="let type of pokemon?.types">
+          {{ type.type.name | titlecase }}
+        </p>
+      </div>
+      <div class="egg-groups pokemon-info">
+        <h4>Egg Groups:</h4>
+        <p *ngFor="let group of pokemonSpecies?.egg_groups">
+          {{ group?.name | titlecase }}
+        </p>
+      </div>
+      <div class="generation pokemon-info">
+        <h4>Generation:</h4>
+        <p>{{ pokemonSpecies?.generation.name | titlecase }}</p>
+      </div>
+      <div class="habitat pokemon-info">
+        <h4>Habitat:</h4>
+        <p>{{ pokemonSpecies?.habitat.name | titlecase }}</p>
+      </div>
+      <div class="growth-rate pokemon-info">
+        <h4>Tasa de crecimiento:</h4>
+        <p>{{ pokemonSpecies?.growth_rate.name | titlecase }}</p>
+      </div>
+      <div class="Otros pokemon-info">
+        <h4>Otros:</h4>
+        <p>Es bebe? : {{ isBaby }}</p>
+        <p>Es legendario? : {{ isLegendary }}</p>
+        <p>Es mítico? : {{ isMythical }}</p>
+        <p>Tiene diferencias de género? : {{ hasDenderDifferences }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    
     <div class="stats">
       <h3>Stats:</h3>
       <div class="stats-container">

@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Type } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, delay, map, switchMap, tap } from 'rxjs/operators';
-import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
+import { IPokemon, Pokemon } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonResponse } from 'src/app/interfaces/pokemonResponse.interface';
+import { PokemonColorsService } from 'src/app/services/pokemon-colors.service';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
 
 @Component({
@@ -33,7 +34,8 @@ export class PokemonCardsComponent implements OnInit {
 
   constructor(
     private _pokemonService: PokemonService,
-    private _router: Router
+    private _router: Router,
+    private _colorService: PokemonColorsService
   ) {
     //Metodo que guarda los Pokemons en la pokemonList
     this._pokemonService.getPokemons(this.page).subscribe({
@@ -113,8 +115,13 @@ export class PokemonCardsComponent implements OnInit {
     });
   }
 
-  //Metodo que te lleva a la bio del pokemon
+  //Método que te lleva a la bio del pokemon
   goToBio(name: string) {
     this._router.navigate(['bio', name]);
+  }
+
+  //Método para los colores
+  public getColorTypesPokemon(typePokemon: string) {
+    return this._colorService.getColorByType(typePokemon);
   }
 }

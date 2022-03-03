@@ -46,7 +46,7 @@
           </div>
           <div class="card-typesContainer">
             <div class="type" *ngFor="let type of pokemon.types">
-              <p class="card-type">{{ type.type.name }}</p>
+              <p class="card-type" [style.background]="getColorTypesPokemon(type.type.name)">{{ type.type.name }}</p>
             </div>
           </div>
         </div>

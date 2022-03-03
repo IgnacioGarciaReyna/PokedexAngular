@@ -12,6 +12,7 @@
 
 .column{
     height: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -103,8 +104,8 @@
 }
 
 .img-pokemon{
-    height: 170px;
-    width: 170px;
+    height: 200px;
+    width: 200px;
 }
 
 .picture-column img:last-child{
@@ -117,4 +118,17 @@
 
 .picture-column:hover img:first-child{
     display: none;
+}
+
+.pokemon-info-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px black solid;
+    border-radius: 2%;
+    width: 30vw;
+}
+
+.pokemon-info{
+    margin: 20px;
 }
