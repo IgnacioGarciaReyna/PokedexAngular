@@ -33,7 +33,7 @@ interface Sprites {
   front_shiny_female?: any;
 }
 
-interface Pokemon {
+export interface Pokemon {
   name: string;
   url: string;
 }
