@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Observable, Subscriber } from 'rxjs';
+import { debounceTime, tap } from 'rxjs/operators';
 import { IEvolutionChain } from 'src/app/interfaces/evolutionChain.interface';
-import { IPokemon, IPokemonURL } from 'src/app/interfaces/IPokemon.interface';
+import { IPokemonURL } from 'src/app/interfaces/IPokemon.interface';
 import { ISpecies } from 'src/app/interfaces/pokemonSpecies.interface';
+import { PokemonColorsService } from 'src/app/services/pokemon-colors.service';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
 
 @Component({
@@ -21,46 +24,73 @@ export class BioPokemonComponent implements OnInit {
   //Evolución
   public evolutionChain: IEvolutionChain | any = undefined;
 
+  public loadingSpinner: boolean = true;
+
+  public pokemonName: string | any = '';
+
+  private subsOnInit: any;
+
   constructor(
     public _pokemonService: PokemonService,
-    private _activatedRoute: ActivatedRoute
-  ) {
-    let pokemonName: string = _activatedRoute.snapshot.params['pokemonName'];
-    this._pokemonService.getPokemonByName(pokemonName).subscribe({
-      next: (object: IPokemonURL | any) => (this.pokemon = object),
-      complete: () => {
-        console.log(this.pokemon),
-          _pokemonService.getUrl(this.pokemon?.species.url).subscribe({
-            next: (species) => {
-              (this.pokemonSpecies = species),
-                (this.isBaby = _pokemonService.characteristicsConditional(
-                  this.pokemonSpecies.is_baby
-                )),
-                (this.isLegendary = _pokemonService.characteristicsConditional(
-                  this.pokemonSpecies.is_legendary
-                )),
-                (this.isMythical = _pokemonService.characteristicsConditional(
-                  this.pokemonSpecies.is_mythical
-                )),
-                (this.hasDenderDifferences =
-                  _pokemonService.characteristicsConditional(
-                    this.pokemonSpecies.has_gender_differences
-                  )),
-                console.log(this.pokemonSpecies);
-            },
-            complete: () =>
-              _pokemonService
-                .getUrl(this.pokemonSpecies.evolution_chain.url)
-                .subscribe({
-                  next: (object) => {
-                    (this.evolutionChain = object),
-                      console.log(this.evolutionChain);
-                  },
-                }),
-          });
-      },
-    });
+    private _activatedRoute: ActivatedRoute,
+    private _colorService: PokemonColorsService,
+    public _router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.subsOnInit = this._activatedRoute.paramMap.subscribe(
+      (params: ParamMap) => {
+        this.loadingSpinner = true;
+        this.pokemonName = params.get('pokemonName');
+        this._pokemonService.getPokemonByName(this.pokemonName).subscribe({
+          next: (object: IPokemonURL | any) => (this.pokemon = object),
+          complete: () => {
+            console.log(this.pokemon),
+              this._pokemonService.getUrl(this.pokemon?.species.url).subscribe({
+                next: (species) => {
+                  (this.pokemonSpecies = species),
+                    (this.isBaby =
+                      this._pokemonService.characteristicsConditional(
+                        this.pokemonSpecies.is_baby
+                      )),
+                    (this.isLegendary =
+                      this._pokemonService.characteristicsConditional(
+                        this.pokemonSpecies.is_legendary
+                      )),
+                    (this.isMythical =
+                      this._pokemonService.characteristicsConditional(
+                        this.pokemonSpecies.is_mythical
+                      )),
+                    (this.hasDenderDifferences =
+                      this._pokemonService.characteristicsConditional(
+                        this.pokemonSpecies.has_gender_differences
+                      )),
+                    console.log(this.pokemonSpecies);
+                },
+                complete: () =>
+                  this._pokemonService
+                    .getUrl(this.pokemonSpecies.evolution_chain.url)
+                    .subscribe({
+                      next: (object) => {
+                        (this.evolutionChain = object),
+                          (this.loadingSpinner = false);
+                        console.log(this.evolutionChain);
+                      },
+                    }),
+              });
+          },
+        });
+      }
+    );
   }
 
-  ngOnInit(): void {}
+  public getColorTypesPokemon(typePokemon: string) {
+    return this._colorService.getColorByType(typePokemon);
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.subsOnInit.unsusbcribe();
+  }
 }

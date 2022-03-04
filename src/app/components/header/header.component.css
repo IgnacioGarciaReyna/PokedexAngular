@@ -1,5 +1,5 @@
 #pokemon-logo {
-    height: 100px;
+    height: 85px;
 }
 
 .container {
@@ -10,7 +10,7 @@
 
 .header-container {
     display: flex;
-    height: 120px;
+    height: 90px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -39,7 +39,7 @@
 
 .a-navigation {
     text-decoration: none;
-    font-size: 30px;
+    font-size: 25px;
     color: aliceblue;
 }
 

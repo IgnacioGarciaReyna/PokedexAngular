@@ -22,16 +22,6 @@ export class PokemonCardsComponent implements OnInit {
   //Página actual
   private page: number = 0;
 
-  //Formulario del search
-  public searchPokemonInput: FormControl = new FormControl();
-
-  //Array de nombres de pokemons
-  public namesList: string[] = [];
-
-  //Opciones filtradas del search
-  public filteredOptions: string[] = [];
-  public finalOptions: string[] = [];
-
   constructor(
     private _pokemonService: PokemonService,
     private _router: Router,
@@ -51,47 +41,7 @@ export class PokemonCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //Llamado al método que trae los nombres de los pokemons para el autocomplete del search
-    this._pokemonService.getPokemonsNames().subscribe({
-      next: (pokemon: IPokemon | any) => this.namesList.push(pokemon.name),
-    });
-
-    //Método del search
-    this.searchPokemonInput.valueChanges
-      .pipe(
-        debounceTime(1500),
-        tap({
-          next: () => {
-            this.loadingSpinner = true;
-            this.pokemonList = [];
-          },
-        }),
-        map((entry: string) => {
-          this.filteredOptions = this.namesList.filter((pokemonName) =>
-            pokemonName.toLowerCase().includes(entry.toLowerCase())
-          );
-          this.filteredOptions.map((option: string) =>
-            this._pokemonService.getPokemonByName(option.toLocaleLowerCase())
-          );
-          return entry;
-        }),
-        switchMap((entry: string) => {
-          if (entry == this.filteredOptions.find((option) => option == entry))
-            return this._pokemonService.getPokemonByName(
-              entry.toLocaleLowerCase()
-            );
-          return this._pokemonService.getPokemons(this.page);
-        }),
-        tap({
-          error: console.log,
-        })
-      )
-      .subscribe({
-        next: (pokemon: IPokemon) => {
-          this.pokemonList.push(pokemon);
-          this.loadingSpinner = false;
-        },
-      });
+    
   }
 
   //Metodo que reacciona a los botones "Previous" y "Next"

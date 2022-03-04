@@ -3,6 +3,31 @@
     <div class="logo-container">
         <img id="pokemon-logo" src="./../../../assets/img/pokemon-logo.png" />
     </div>
+    <div class="search-container">
+      <!-- <input
+        type="search"
+        [formControl]="searchPokemonInput"
+        placeholder="Search by name"
+      />
+      <select name="" id="">
+        <option [value]="name" *ngFor="let name of namesList">
+          {{ name }}
+        </option>
+      </select> -->
+      <input
+        [formControl]="searchPokemonInput"
+        class="form-control"
+        list="namesListOptions"
+        id="searchPokemons"
+        placeholder="Buscá un pokemon..."
+        type="search"
+      />
+      <datalist id="namesListOptions">
+        <option [value]="name" *ngFor="let name of namesList">
+          {{ name }}
+        </option>
+      </datalist>
+    </div>
     <div class="header">
       <a class="a-navigation" href="/home">Home</a>
       <a class="a-navigation" href="/pokemons">Pokemons</a>

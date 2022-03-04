@@ -27,3 +27,14 @@ body{
         opacity: 1;
     }
 }
+
+.card-type {
+    text-transform: capitalize;
+    color: black;
+    font-weight: bold;
+    margin: 5px;
+  }
+  
+  .pill-card-type{
+    border-radius: 5px;
+  }

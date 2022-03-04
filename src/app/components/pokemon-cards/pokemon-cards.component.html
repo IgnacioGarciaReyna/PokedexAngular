@@ -1,30 +1,6 @@
 <ng-container>
   <div class="container">
-    <div class="search-container">
-      <!-- <input
-        type="search"
-        [formControl]="searchPokemonInput"
-        placeholder="Search by name"
-      />
-      <select name="" id="">
-        <option [value]="name" *ngFor="let name of namesList">
-          {{ name }}
-        </option>
-      </select> -->
-      <input
-        [formControl]="searchPokemonInput"
-        class="form-control"
-        list="namesListOptions"
-        id="searchPokemons"
-        placeholder="Buscá un pokemon..."
-        type="search"
-      />
-      <datalist id="namesListOptions">
-        <option [value]="name" *ngFor="let name of namesList">
-          {{ name }}
-        </option>
-      </datalist>
-    </div>
+    
 
     <div class="loadingSpinner fadeIn" *ngIf="loadingSpinner">
       <h1>Loading...</h1>
@@ -46,7 +22,9 @@
           </div>
           <div class="card-typesContainer">
             <div class="type" *ngFor="let type of pokemon.types">
-              <p class="card-type" [style.background]="getColorTypesPokemon(type.type.name)">{{ type.type.name }}</p>
+              <div class="pill-card-type" [style.background]="getColorTypesPokemon(type.type.name)">
+                <p class="card-type">{{ type.type.name }}</p>
+              </div>
             </div>
           </div>
         </div>

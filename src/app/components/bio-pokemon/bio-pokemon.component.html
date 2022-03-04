@@ -1,5 +1,8 @@
-<div class="container">
-  <div class="column">
+<div class="container fadeIn">
+  <div class="loadingSpinner fadeIn" *ngIf="loadingSpinner">
+    <h1>Loading...</h1>
+  </div>
+  <div class="column fadeIn" *ngIf="!loadingSpinner">
     <div class="name-container">
       <p class="pokemon-number">#{{ pokemon?.id }}</p>
       <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>
@@ -14,22 +17,7 @@
         />
         <img
           class="img-pokemon"
-          [src]="pokemon?.sprites?.front_shiny"
-          alt=""
-          srcset=""
-        />
-      </div>
-      <div class="picture-column">
-        <img
-          class="img-pokemon"
           [src]="pokemon?.sprites?.back_default"
-          alt=""
-          srcset=""
-        />
-
-        <img
-          class="img-pokemon"
-          [src]="pokemon?.sprites?.back_shiny"
           alt=""
           srcset=""
         />
@@ -37,7 +25,10 @@
     </div>
 
     <div class="evolutions-container">
-      <div class="evolutions" *ngIf="pokemonSpecies?.evolves_from_species !== null">
+      <div
+        class="evolutions"
+        *ngIf="pokemonSpecies?.evolves_from_species !== null"
+      >
         <h4>Es la evolución de:</h4>
         <a href="bio/{{ pokemonSpecies?.evolves_from_species.name }}">{{
           pokemonSpecies?.evolves_from_species.name | titlecase
@@ -54,20 +45,18 @@
         </div>
       </div>
     </div>
-    
 
     <div class="pokemon-info-container">
-      <div class="abilities pokemon-info">
-        <h4>Abilities:</h4>
-        <p *ngFor="let ability of pokemon?.abilities">
-          {{ ability.ability.name | titlecase }}
-        </p>
-      </div>
       <div class="types pokemon-info">
         <h4>Types:</h4>
-        <p *ngFor="let type of pokemon?.types">
-          {{ type.type.name | titlecase }}
-        </p>
+        <div class="type" *ngFor="let type of pokemon?.types">
+          <div
+            class="pill-card-type"
+            [style.background]="getColorTypesPokemon(type.type.name)"
+          >
+            <p class="card-type">{{ type.type.name }}</p>
+          </div>
+        </div>
       </div>
       <div class="egg-groups pokemon-info">
         <h4>Egg Groups:</h4>
@@ -75,35 +64,49 @@
           {{ group?.name | titlecase }}
         </p>
       </div>
+      <div class="habitat pokemon-info">
+        <h4>Habitat:</h4>
+        <p>{{ pokemonSpecies?.habitat?.name | titlecase }}</p>
+        <p *ngIf="pokemonSpecies.habitat == null">Unknown</p>
+      </div>
       <div class="generation pokemon-info">
         <h4>Generation:</h4>
         <p>{{ pokemonSpecies?.generation.name | titlecase }}</p>
-      </div>
-      <div class="habitat pokemon-info">
-        <h4>Habitat:</h4>
-        <p>{{ pokemonSpecies?.habitat.name | titlecase }}</p>
       </div>
       <div class="growth-rate pokemon-info">
         <h4>Tasa de crecimiento:</h4>
         <p>{{ pokemonSpecies?.growth_rate.name | titlecase }}</p>
       </div>
-      <div class="Otros pokemon-info">
-        <h4>Otros:</h4>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="pokemon-info-container2 fadeIn" *ngIf="!loadingSpinner">
+      <div class="abilities pokemon-info">
+        <h4>Abilities:</h4>
+        <p *ngFor="let ability of pokemon?.abilities">
+          {{ ability.ability.name | titlecase }}
+        </p>
+      </div>
+      <div class="isBaby pokemon-info">
         <p>Es bebe? : {{ isBaby }}</p>
+      </div>
+      <div class="isLegendary pokemon-info">
         <p>Es legendario? : {{ isLegendary }}</p>
+      </div>
+      <div class="isMythical pokemon-info">
         <p>Es mítico? : {{ isMythical }}</p>
+      </div>
+      <div class="hasDenderDifferences pokemon-info">
         <p>Tiene diferencias de género? : {{ hasDenderDifferences }}</p>
       </div>
     </div>
-  </div>
-  <div class="column">
-    
-    <div class="stats">
+    <div class="stats fadeIn" *ngIf="!loadingSpinner">
       <h3>Stats:</h3>
       <div class="stats-container">
         <div class="stat-column" *ngFor="let stats of pokemon?.stats">
-          <p>{{ stats?.stat?.name | titlecase }}</p>
-
+          <p class="stat-name">{{ stats?.stat?.name | titlecase }}</p>
+  
           <ul class="slot-container">
             <li
               class="empty-slot"
