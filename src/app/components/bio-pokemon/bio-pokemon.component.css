@@ -1,14 +1,14 @@
 .container {
-  height: 75vh;
+  height: auto;
   margin-top: 90px;
-  width: 100vw;
+  width: auto;
   background-color: aliceblue;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
 }
 
 .column {
-  width: 40vw;
+  width: auto;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -49,6 +49,7 @@
   justify-content: center;
   align-items: center;
   height: 350px;
+  margin-bottom: 10px;
 }
 
 .stats-container {
@@ -78,7 +79,7 @@
   flex-direction: column-reverse;
 }
 
-.empty-slot {
+.empty-slot{
   background-color: rgb(206, 228, 228);
   border: 1px solid #f0f8ff;
   height: 10px;
@@ -88,8 +89,6 @@
 .full-slot {
   background-color: rgb(11, 212, 212);
   border: 1px solid #f0f8ff;
-  height: 10px;
-  width: 80px;
 }
 
 .pictures {
@@ -132,13 +131,99 @@
   border: 1px black solid;
   border-radius: 2%;
   height: auto;
-  width: 100%;
+  width: 80%;
   margin: 10px;
 }
 
 .pokemon-info {
-  margin: 10px;
+  margin: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.loadingSpinner{
+  height: 75vh;
+  margin-top: 90px;
+  width: 100vw;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.isMythical{
+  background-color: rgb(186, 134, 235);
+}
+
+.isBaby{
+  background-color: rgb(255, 255, 188);
+}
+
+
+@media (max-width: 1190px) {
+  
+}
+
+@media (max-width: 950px) {
+  .container {
+    grid-template-columns: auto;
+  }
+}
+
+@media (max-width: 795px) {
+  
+}
+
+@media (max-width: 680px) {
+  .stats {
+    height: 350px;
+  }
+  
+  .stats-container {
+    margin: 8px;
+  }
+  
+  .stat-column {
+    margin: 8px;
+  }
+  
+  .stat-name{
+    font-size: 11px;
+  }
+  
+  .empty-slot {
+    height: 10px;
+    width: 60px;
+  }
+  
+}
+
+@media (max-width: 570px) {
+  .stats {
+    height: auto;
+  }
+
+  .stat-name{
+    font-size: 9px;
+  }
+  
+  .empty-slot {
+    height: 7px;
+    width: 18px;
+  }
+
+  .stats-container {
+    margin: 8px;
+    flex-direction: column;
+  }
+  
+  .stat-column {
+    flex-direction: column;
+  }
+
+  .slot-container{
+    flex-direction: row;
+  }
+  
 }

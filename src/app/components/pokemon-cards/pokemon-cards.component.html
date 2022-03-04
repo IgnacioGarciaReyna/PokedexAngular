@@ -7,7 +7,7 @@
     </div>
     <div class="cards-pagination fadeIn" *ngIf="!loadingSpinner">
       <button
-        class="pagination-button"
+        class="pagination-button previous"
         value="previous"
         (click)="loadNewPage($event)"
       >
@@ -30,7 +30,7 @@
         </div>
       </div>
       <button
-        class="pagination-button"
+        class="pagination-button next"
         value="next"
         (click)="loadNewPage($event)"
       >

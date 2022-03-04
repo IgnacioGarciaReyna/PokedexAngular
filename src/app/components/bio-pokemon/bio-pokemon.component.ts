@@ -16,9 +16,6 @@ import { PokemonService } from 'src/app/services/pokemon-service.service';
 export class BioPokemonComponent implements OnInit {
   public pokemon: IPokemonURL | undefined = undefined;
   public pokemonSpecies: ISpecies | any = undefined;
-  public isBaby: string = ' ';
-  public isLegendary: string = ' ';
-  public isMythical: string = ' ';
   public hasDenderDifferences: string = ' ';
 
   //Evolución
@@ -49,18 +46,6 @@ export class BioPokemonComponent implements OnInit {
               this._pokemonService.getUrl(this.pokemon?.species.url).subscribe({
                 next: (species) => {
                   (this.pokemonSpecies = species),
-                    (this.isBaby =
-                      this._pokemonService.characteristicsConditional(
-                        this.pokemonSpecies.is_baby
-                      )),
-                    (this.isLegendary =
-                      this._pokemonService.characteristicsConditional(
-                        this.pokemonSpecies.is_legendary
-                      )),
-                    (this.isMythical =
-                      this._pokemonService.characteristicsConditional(
-                        this.pokemonSpecies.is_mythical
-                      )),
                     (this.hasDenderDifferences =
                       this._pokemonService.characteristicsConditional(
                         this.pokemonSpecies.has_gender_differences

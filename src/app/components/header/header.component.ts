@@ -35,7 +35,8 @@ export class HeaderComponent implements OnInit {
     //Método del search
     this.searchPokemonInput.valueChanges
       .pipe(
-        filter((name) => this.namesList.includes(name.toLowerCase()))
+        map((name) => (name = name.toLowerCase())),
+        filter((name) => this.namesList.includes(name))
         // debounceTime(1500)
         // tap({
         //   next: () => {
@@ -71,7 +72,7 @@ export class HeaderComponent implements OnInit {
       // });
       .subscribe({
         next: (name) => {
-            this._router.navigate(['bio', name]),
+          this._router.navigate(['bio', name]),
             this.searchPokemonInput.setValue('');
         },
       });

@@ -1,7 +1,7 @@
-<div class="container fadeIn">
-  <div class="loadingSpinner fadeIn" *ngIf="loadingSpinner">
-    <h1>Loading...</h1>
-  </div>
+<div class="loadingSpinner fadeIn" *ngIf="loadingSpinner">
+  <h1>Loading...</h1>
+</div>
+<div class="container fadeIn" *ngIf="!loadingSpinner">
   <div class="column fadeIn" *ngIf="!loadingSpinner">
     <div class="name-container">
       <p class="pokemon-number">#{{ pokemon?.id }}</p>
@@ -64,6 +64,31 @@
           {{ group?.name | titlecase }}
         </p>
       </div>
+      <div
+        class="otros-container pokemon-info"
+        *ngIf="
+          pokemonSpecies?.is_baby ||
+          pokemonSpecies?.is_legendary ||
+          pokemonSpecies.is_mythical
+        "
+      >
+        <h4>Otros:</h4>
+        <div class="isBaby pill-card-type" *ngIf="pokemonSpecies?.is_baby">
+          <p class="card-type">Baby</p>
+        </div>
+        <div
+          class="isLegendary pill-card-type"
+          *ngIf="pokemonSpecies?.is_legendary"
+        >
+          <p class="card-type">Legendary</p>
+        </div>
+        <div
+          class="isMythical pill-card-type"
+          *ngIf="this.pokemonSpecies.is_mythical"
+        >
+          <p class="card-type">Mythical</p>
+        </div>
+      </div>
       <div class="habitat pokemon-info">
         <h4>Habitat:</h4>
         <p>{{ pokemonSpecies?.habitat?.name | titlecase }}</p>
@@ -88,15 +113,6 @@
           {{ ability.ability.name | titlecase }}
         </p>
       </div>
-      <div class="isBaby pokemon-info">
-        <p>Es bebe? : {{ isBaby }}</p>
-      </div>
-      <div class="isLegendary pokemon-info">
-        <p>Es legendario? : {{ isLegendary }}</p>
-      </div>
-      <div class="isMythical pokemon-info">
-        <p>Es mítico? : {{ isMythical }}</p>
-      </div>
       <div class="hasDenderDifferences pokemon-info">
         <p>Tiene diferencias de género? : {{ hasDenderDifferences }}</p>
       </div>
@@ -106,110 +122,110 @@
       <div class="stats-container">
         <div class="stat-column" *ngFor="let stats of pokemon?.stats">
           <p class="stat-name">{{ stats?.stat?.name | titlecase }}</p>
-  
+
           <ul class="slot-container">
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 15
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 30
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 45
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 60
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 75
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 90
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 105
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 120
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 135
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 150
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 165
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 180
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 195
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 210
               }"
             ></li>
             <li
-              class="empty-slot"
+              class="empty-slot slot"
               [ngClass]="{
-                'full-slot':
+                'full-slot slot':
                   stats?.base_stat !== undefined && stats.base_stat > 225
               }"
             ></li>

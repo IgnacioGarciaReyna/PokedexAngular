@@ -1,16 +1,44 @@
 .container {
     background-color: #202124;
-    height: 10vh;
+    height: 90px;
     display: flex;
     flex-direction: row;
     justify-content: end;
 }
 
 .footer-items-container{
-    width: 50%;
+    width: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    color: aliceblue;
 }
+
+.footer-item{
+    color: aliceblue;
+    margin: 10px;
+    font-size: 12px;
+}
+
+@media (max-width: 1190px) {
+    
+  }
+  
+  @media (max-width: 950px) {
+  }
+  
+  @media (max-width: 795px) {
+    
+  }
+  
+  @media (max-width: 680px) {
+    .footer-item{
+        margin: 10px;
+        font-size: 9px;
+    }
+  }
+  
+  @media (max-width: 570px) {
+
+  }
+  

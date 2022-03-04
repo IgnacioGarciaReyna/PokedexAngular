@@ -6,6 +6,7 @@
     position: fixed;
     top: 0;
     background-color: #202124;
+    z-index: 9;
 }
 
 .header-container {
@@ -46,3 +47,50 @@
 .a-navigation:hover {
     color: yellow;
 }
+
+#searchPokemons{
+    width: 180px;
+    height: 40px;
+    border: solid 3px #412F55;
+    border-radius: 5%;
+    font-family: 'Titillium Web', sans-serif;
+    background-color: #202124;
+    color: yellow;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+
+@media (max-width: 950px) {
+    .logo-container{
+        display: none;
+    }
+
+    .header-container{
+        justify-content: space-around;
+    }
+  }
+  
+  @media (max-width: 795px) {
+    .a-navigation {
+        font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 680px) {
+    .a-navigation {
+        font-size: 15px;
+    }
+
+    #searchPokemons{
+        width: 140px;
+        height: 30px;
+        font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 570px) {
+    .a-navigation {
+        font-size: 12px;
+    }
+  }
