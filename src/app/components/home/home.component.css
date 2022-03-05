@@ -1,42 +1,118 @@
-.container{
+.container {
+  background-size: cover;
+  background-position: right;
+  height: 85vh;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  margin-top: 90px;
+  animation: backgroundAnimation 15s linear infinite;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    /* playa */
+    background-image: url(./../../../assets/img/wallpapersden.com_pokemon-pikachu-art_1440x900.jpg);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+    color: #202124;
+  }
+  48% {
+    opacity: 1;
+  }
+  50% {
+    /* playa */
+    background-image: url(./../../../assets/img/wallpapersden.com_pokemon-pikachu-art_1440x900.jpg);
+    opacity: 0;
+  }
+  51% {
+    /* fuego */
     background-image: url(./../../../assets/img/wallpapersden.com_ghost-pokemon_wxl.jpg);
-    background-size: cover;
-    background-position: right;
-    height: 78vh;
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    margin-top: 90px;
+    opacity: 0;
+    color: #202124;
+  }
+  52% {
+    background-image: url(./../../../assets/img/wallpapersden.com_ghost-pokemon_wxl.jpg);
+    opacity: 1;
+    color: aliceblue;
+  }
+  100% {
+    background-image: url(./../../../assets/img/wallpapersden.com_ghost-pokemon_wxl.jpg);
+    opacity: 1;
+    color: aliceblue;
+  }
 }
 
 .tittle-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50%;
 }
 
 .mini-tittle-container {
-    display: flex;
-    width: 50%;
-    color: aliceblue;
+  display: flex;
+  width: 50%;
 }
 
-.welcome-tittle{
-    font-size: 60px;
+.welcome-tittle {
+  font-size: 60px;
 }
 
 #tittle-end {
-    align-items: flex-end;
-    height: 40%;
+  align-items: flex-end;
+  height: 40%;
 }
 
 #tittle-center {
-    height: 50%;
-    align-items: flex-start;
+  height: 50%;
+  align-items: flex-start;
 }
 
+@media (max-width: 1280px) {
+  .welcome-tittle {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 950px) {
+  .welcome-tittle {
+    font-size: 40px;
+  }
+  .welcome-subtittle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 795px) {
+  .welcome-subtittle {
+    font-size: 13px;
+  }
+  .tittle-container {
+    width: 80vw;
+  }
+
+  
+
+  .container {
+    background-position: 80%;
+  }
+}
+
+@media (max-width: 680px) {
+  .welcome-tittle {
+    font-size: 35px;
+  }
+  .container {
+    justify-content: start;
+  }
+}
+
+@media (max-width: 570px) {
+}
