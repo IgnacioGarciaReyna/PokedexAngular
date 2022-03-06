@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, Subscriber } from 'rxjs';
-import { debounceTime, tap } from 'rxjs/operators';
+import { debounceTime, mergeMap, tap } from 'rxjs/operators';
 import { IEvolutionChain } from 'src/app/interfaces/evolutionChain.interface';
 import { IPokemonURL } from 'src/app/interfaces/IPokemon.interface';
+import { PokemonResponse } from 'src/app/interfaces/pokemonResponse.interface';
 import { ISpecies } from 'src/app/interfaces/pokemonSpecies.interface';
 import { PokemonColorsService } from 'src/app/services/pokemon-colors.service';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
@@ -20,6 +21,8 @@ export class BioPokemonComponent implements OnInit {
 
   //Evolución
   public evolutionChain: IEvolutionChain | any = undefined;
+  public evolutionNames: string[] = [];
+  public evolutionsPokemons: any[] = [];
 
   public loadingSpinner: boolean = true;
 
@@ -37,6 +40,8 @@ export class BioPokemonComponent implements OnInit {
   ngOnInit(): void {
     this.subsOnInit = this._activatedRoute.paramMap.subscribe(
       (params: ParamMap) => {
+        this.evolutionNames = [];
+        this.evolutionsPokemons = [];
         this.loadingSpinner = true;
         this.pokemonName = params.get('pokemonName');
         this._pokemonService.getPokemonByName(this.pokemonName).subscribe({
@@ -56,10 +61,37 @@ export class BioPokemonComponent implements OnInit {
                   this._pokemonService
                     .getUrl(this.pokemonSpecies.evolution_chain.url)
                     .subscribe({
-                      next: (object) => {
+                      next: (object: IEvolutionChain | any) => {
                         (this.evolutionChain = object),
+                          console.log(this.evolutionChain),
+                          this.evolutionNames.push(
+                            this.evolutionChain.chain.species.name
+                          );
+                        for (
+                          let i = 0;
+                          i < this.evolutionChain.chain.evolves_to.length;
+                          i++
+                        ) {
+                          this.evolutionNames.push(
+                            this.evolutionChain.chain.evolves_to[i].species.name
+                          );
+                          for (
+                            let j = 0;
+                            j <
+                            this.evolutionChain.chain.evolves_to[i].evolves_to
+                              .length;
+                            j++
+                          ) {
+                            this.evolutionNames.push(
+                              this.evolutionChain.chain.evolves_to[i]
+                                .evolves_to[j].species.name
+                            );
+                          }
+                        }
+                        for (let i = 0; i < this.evolutionNames.length; i++) {
+                          this.getEvolution(this.evolutionNames[i]);
+                        }
                           (this.loadingSpinner = false);
-                        console.log(this.evolutionChain);
                       },
                     }),
               });
@@ -71,6 +103,17 @@ export class BioPokemonComponent implements OnInit {
 
   public getColorTypesPokemon(typePokemon: string) {
     return this._colorService.getColorByType(typePokemon);
+  }
+
+  public getEvolution(name: string) {
+    return this._pokemonService.getPokemonByName(name).subscribe({
+      next: (pokemon) => this.evolutionsPokemons.push(pokemon),
+    });
+  }
+
+  //Método que te lleva a la bio del pokemon
+  goToBio(name: string) {
+    this._router.navigate(['bio', name]);
   }
 
   ngOnDestroy(): void {

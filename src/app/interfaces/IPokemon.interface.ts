@@ -203,7 +203,7 @@ interface Redblue {
 interface Other {
   dream_world: Dreamworld;
   home: Home;
-  'official-artwork': Officialartwork;
+  ["official-artwork"]: Officialartwork;
 }
 
 interface Officialartwork {

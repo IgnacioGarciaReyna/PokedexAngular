@@ -9,42 +9,28 @@
     </div>
     <div class="pictures">
       <div class="picture-column">
-        <img
+        <!-- <img
           class="img-pokemon"
-          [src]="pokemon?.sprites?.front_default"
+          [src]="pokemon?.sprites?.other?.['official-artwork']?.front_default"
           alt=""
           srcset=""
-        />
+        /> -->
+        <!-- <img
+          class="img-pokemon"
+          [src]="pokemon?.sprites?.other?.home?.front_default"
+          alt=""
+          srcset=""
+        /> -->
         <img
           class="img-pokemon"
-          [src]="pokemon?.sprites?.back_default"
+          [src]="pokemon?.sprites?.other?.dream_world?.front_default"
           alt=""
           srcset=""
         />
       </div>
     </div>
 
-    <div class="evolutions-container">
-      <div
-        class="evolutions"
-        *ngIf="pokemonSpecies?.evolves_from_species !== null"
-      >
-        <h4>Es la evolución de:</h4>
-        <a href="bio/{{ pokemonSpecies?.evolves_from_species.name }}">{{
-          pokemonSpecies?.evolves_from_species.name | titlecase
-        }}</a>
-      </div>
-      <div class="evolutions" *ngIf="evolutionChain?.chain.species !== null">
-        <div *ngFor="let evolves_to of evolutionChain?.chain.evolves_to">
-          <div *ngFor="let evolution of evolves_to.evolves_to">
-            <h4>Evoluciona a:</h4>
-            <a href="bio/{{ evolution.species.name }}">{{
-              evolution.species.name | titlecase
-            }}</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
     <div class="pokemon-info-container">
       <div class="types pokemon-info">
@@ -103,9 +89,6 @@
         <p>{{ pokemonSpecies?.growth_rate.name | titlecase }}</p>
       </div>
     </div>
-  </div>
-
-  <div class="column">
     <div class="pokemon-info-container2 fadeIn" *ngIf="!loadingSpinner">
       <div class="abilities pokemon-info">
         <h4>Abilities:</h4>
@@ -117,6 +100,10 @@
         <p>Tiene diferencias de género? : {{ hasDenderDifferences }}</p>
       </div>
     </div>
+  </div>
+
+  <div class="column">
+    
     <div class="stats fadeIn" *ngIf="!loadingSpinner">
       <h3>Stats:</h3>
       <div class="stats-container">
@@ -231,6 +218,25 @@
             ></li>
           </ul>
           <p>{{ stats?.base_stat }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="evolutions">
+      <h4>Evolución:</h4>
+      <div class="evolutions-container">
+        <div class="evolution" *ngFor="let evolution of evolutionsPokemons" (click)="goToBio(evolution.name)">
+          <div class="name-evolution-container">
+            <p class="id-evolution">#{{ evolution.id }}</p>
+            <p class="name-evolution">{{
+              evolution.name | titlecase
+            }}</p>
+          </div>
+          <img
+            class="img-evolution"
+            [src]="evolution?.sprites?.front_default"
+            alt=""
+            srcset=""
+          />
         </div>
       </div>
     </div>
