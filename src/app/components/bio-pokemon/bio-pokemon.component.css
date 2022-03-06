@@ -13,7 +13,7 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
 .name-container {
@@ -110,17 +110,7 @@
   border-radius: 2%;
   height: auto;
   width: auto;
-}
-
-.pokemon-info-container2{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border: 1px black solid;
-  border-radius: 2%;
-  height: auto;
-  width: 80%;
-  margin: 10px;
+  margin: 5px;
 }
 
 .pokemon-info {
@@ -128,6 +118,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.abilities{
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.abilities > ul > li{
+  list-style: none;
+}
+
+.pokemon-info > p {
+  margin-left: 10px;
 }
 
 .loadingSpinner{
@@ -155,6 +159,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 100px;
 }
 
 .evolutions-container{

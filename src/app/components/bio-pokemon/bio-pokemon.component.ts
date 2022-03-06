@@ -91,8 +91,8 @@ export class BioPokemonComponent implements OnInit {
                         for (let i = 0; i < this.evolutionNames.length; i++) {
                           this.getEvolution(this.evolutionNames[i]);
                         }
-                          (this.loadingSpinner = false);
                       },
+                      complete: () => (this.loadingSpinner = false),
                     }),
               });
           },
@@ -122,3 +122,4 @@ export class BioPokemonComponent implements OnInit {
     this.subsOnInit.unsusbcribe();
   }
 }
+

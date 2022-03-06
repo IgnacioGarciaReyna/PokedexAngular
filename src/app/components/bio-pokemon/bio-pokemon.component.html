@@ -30,8 +30,6 @@
       </div>
     </div>
 
-    
-
     <div class="pokemon-info-container">
       <div class="types pokemon-info">
         <h4>Types:</h4>
@@ -88,22 +86,22 @@
         <h4>Tasa de crecimiento:</h4>
         <p>{{ pokemonSpecies?.growth_rate.name | titlecase }}</p>
       </div>
-    </div>
-    <div class="pokemon-info-container2 fadeIn" *ngIf="!loadingSpinner">
-      <div class="abilities pokemon-info">
-        <h4>Abilities:</h4>
-        <p *ngFor="let ability of pokemon?.abilities">
-          {{ ability.ability.name | titlecase }}
-        </p>
-      </div>
       <div class="hasDenderDifferences pokemon-info">
-        <p>Tiene diferencias de género? : {{ hasDenderDifferences }}</p>
+        <h4>Diferencias de género:</h4>
+        <p>{{ hasDenderDifferences }}</p>
+      </div>
+      <div class="abilities">
+        <h4>Abilities:</h4>
+        <ul>
+          <li *ngFor="let ability of pokemon?.abilities">
+            {{ ability.ability.name | titlecase }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
   <div class="column">
-    
     <div class="stats fadeIn" *ngIf="!loadingSpinner">
       <h3>Stats:</h3>
       <div class="stats-container">
@@ -224,12 +222,14 @@
     <div class="evolutions">
       <h4>Evolución:</h4>
       <div class="evolutions-container">
-        <div class="evolution" *ngFor="let evolution of evolutionsPokemons" (click)="goToBio(evolution.name)">
+        <div
+          class="evolution"
+          *ngFor="let evolution of evolutionsPokemons"
+          (click)="goToBio(evolution.name)"
+        >
           <div class="name-evolution-container">
             <p class="id-evolution">#{{ evolution.id }}</p>
-            <p class="name-evolution">{{
-              evolution.name | titlecase
-            }}</p>
+            <p class="name-evolution">{{ evolution.name | titlecase }}</p>
           </div>
           <img
             class="img-evolution"
