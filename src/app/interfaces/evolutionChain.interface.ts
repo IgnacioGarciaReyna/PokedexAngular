@@ -2,25 +2,25 @@ import { PokemonResults } from "./pokemonResponse.interface";
 
 export interface IEvolutionChain {
   baby_trigger_item?: any;
-  chain: Chain;
+  chain: IChain;
   id: number;
 }
 
-interface Chain {
+export interface IChain {
   evolution_details: any[];
   evolves_to: Evolvesto2[];
   is_baby: boolean;
   species: PokemonResults;
 }
 
-interface Evolvesto2 {
+export interface Evolvesto2 {
   evolution_details: Evolutiondetail[];
   evolves_to: Evolvesto[];
   is_baby: boolean;
   species: PokemonResults;
 }
 
-interface Evolvesto {
+export interface Evolvesto {
   evolution_details: Evolutiondetail[];
   evolves_to: any[];
   is_baby: boolean;

@@ -1,9 +1,15 @@
+import { Chain } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable, Subscriber } from 'rxjs';
-import { debounceTime, mergeMap, tap } from 'rxjs/operators';
-import { IEvolutionChain } from 'src/app/interfaces/evolutionChain.interface';
+import { from, Observable, pipe, Subscriber } from 'rxjs';
+import { debounceTime, mergeMap, pluck, tap } from 'rxjs/operators';
+import {
+  Evolvesto,
+  Evolvesto2,
+  IEvolutionChain,
+} from 'src/app/interfaces/evolutionChain.interface';
 import { IPokemonURL } from 'src/app/interfaces/IPokemon.interface';
+import { IChain } from 'src/app/interfaces/evolutionChain.interface';
 import { PokemonResponse } from 'src/app/interfaces/pokemonResponse.interface';
 import { ISpecies } from 'src/app/interfaces/pokemonSpecies.interface';
 import { PokemonColorsService } from 'src/app/services/pokemon-colors.service';
@@ -60,39 +66,40 @@ export class BioPokemonComponent implements OnInit {
                 complete: () =>
                   this._pokemonService
                     .getUrl(this.pokemonSpecies.evolution_chain.url)
+                    .pipe(
+                      pluck('chain'),
+                      tap((chain: IChain | any) => {
+                        console.log(chain);
+                        this.evolutionNames.push(chain.species.name);
+                        console.log(this.evolutionNames);
+                      }),
+                      pluck('evolves_to'),
+                      mergeMap((evolves_to) =>
+                        from(evolves_to).pipe(
+                          tap((evolves: Evolvesto2 | any) =>
+                            this.evolutionNames.push(evolves.species.name)
+                          )
+                        )
+                      ),
+                      pluck('evolves_to'),
+                      mergeMap((evolves_to) =>
+                        from(evolves_to).pipe(
+                          tap((evolves: Evolvesto | any) => {
+                            this.evolutionNames.push(evolves.species.name),
+                              console.log(this.evolutionNames);
+                          })
+                        )
+                      ),
+                      tap(console.log)
+                    )
                     .subscribe({
-                      next: (object: IEvolutionChain | any) => {
-                        (this.evolutionChain = object),
-                          console.log(this.evolutionChain),
-                          this.evolutionNames.push(
-                            this.evolutionChain.chain.species.name
-                          );
-                        for (
-                          let i = 0;
-                          i < this.evolutionChain.chain.evolves_to.length;
-                          i++
-                        ) {
-                          this.evolutionNames.push(
-                            this.evolutionChain.chain.evolves_to[i].species.name
-                          );
-                          for (
-                            let j = 0;
-                            j <
-                            this.evolutionChain.chain.evolves_to[i].evolves_to
-                              .length;
-                            j++
-                          ) {
-                            this.evolutionNames.push(
-                              this.evolutionChain.chain.evolves_to[i]
-                                .evolves_to[j].species.name
-                            );
-                          }
-                        }
+                      complete: () => {
                         for (let i = 0; i < this.evolutionNames.length; i++) {
-                          this.getEvolution(this.evolutionNames[i]);
+                          console.log(this.evolutionNames[i]),
+                            this.getEvolution(this.evolutionNames[i]);
                         }
+                        this.loadingSpinner = false;
                       },
-                      complete: () => (this.loadingSpinner = false),
                     }),
               });
           },
@@ -107,7 +114,7 @@ export class BioPokemonComponent implements OnInit {
 
   public getEvolution(name: string) {
     return this._pokemonService.getPokemonByName(name).subscribe({
-      next: (pokemon) => this.evolutionsPokemons.push(pokemon),
+      next: (pokemon) => {this.evolutionsPokemons.push(pokemon), console.log(this.evolutionsPokemons)}
     });
   }
 
@@ -122,4 +129,3 @@ export class BioPokemonComponent implements OnInit {
     this.subsOnInit.unsusbcribe();
   }
 }
-
