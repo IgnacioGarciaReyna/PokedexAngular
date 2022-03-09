@@ -10,13 +10,18 @@ const routes: Routes = [
   { path: 'pokemons', component: PokemonCardsComponent },
   { path: 'about', component: AboutAPIComponent },
   { path: 'bio/:pokemonName', component: BioPokemonComponent },
-  { path: '**', pathMatch:'full', redirectTo: 'home' }
+  { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 export const appRouting = RouterModule.forRoot(routes);
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      relativeLinkResolution: 'legacy',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
