@@ -71,14 +71,6 @@
   justify-content: space-around;
 }
 
-.pagination-button {
-  height: 40px;
-  width: 60px;
-  border-radius: 20%;
-  background: aliceblue;
-  color: #202124;
-}
-
 .card:hover .card-img {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
@@ -90,6 +82,14 @@
 .card:hover {
   filter: grayscale(0%);
   cursor: pointer;
+}
+
+.pagination-button {
+  height: 40px;
+  width: 60px;
+  border-radius: 20%;
+  background: aliceblue;
+  color: #202124;
 }
 
 .pagination-button:hover {

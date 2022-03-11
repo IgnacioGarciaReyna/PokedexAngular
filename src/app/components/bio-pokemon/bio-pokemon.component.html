@@ -3,7 +3,7 @@
 </div>
 <div class="container fadeIn" *ngIf="!loadingSpinner">
   <div class="column fadeIn" *ngIf="!loadingSpinner">
-    <button (click)="goBack()">Back</button>
+    <button class="pagination-button" (click)="goBack()">Back</button>
     <div class="name-container">
       <p class="pokemon-number">#{{ pokemon?.id }}</p>
       <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>

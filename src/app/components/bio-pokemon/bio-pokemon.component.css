@@ -98,8 +98,8 @@
 }
 
 .img-pokemon {
-  height: 150px;
-  width: 150px;
+  height: 300px;
+  width: 300px;
 }
 
 .pokemon-info-container {
@@ -185,6 +185,21 @@
   display: flex;
   justify-content: space-around;
 }
+
+.pagination-button {
+  height: 40px;
+  width: 60px;
+  border-radius: 20%;
+  background: aliceblue;
+  color: #202124;
+}
+
+.pagination-button:hover {
+  background: #202124;
+  color: aliceblue;
+  cursor: pointer;
+}
+
 
 
 @media (max-width: 1190px) {

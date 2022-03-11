@@ -20,13 +20,15 @@ export class PokemonCardsComponent implements OnInit {
   public loadingSpinner: boolean = false;
 
   //Página actual
-  private page: number = 0;
+  public page: number = 0;
 
   constructor(
     private _pokemonService: PokemonService,
     private _router: Router,
     private _colorService: PokemonColorsService
   ) {
+
+    
     //Metodo que guarda los Pokemons en la pokemonList
     this._pokemonService.getPokemons(this.page).subscribe({
       next: (pokemon: IPokemon | any) => {

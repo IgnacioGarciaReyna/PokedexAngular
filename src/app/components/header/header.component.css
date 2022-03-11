@@ -18,6 +18,7 @@
 
 .logo-container {
     background-image: url(./../../../assets/img/Pokemon-Emblema.jpg);
+    background-size: cover;
     width: 30%;
     display: flex;
     align-items: center;
