@@ -114,7 +114,10 @@ export class BioPokemonComponent implements OnInit {
 
   public getEvolution(name: string) {
     return this._pokemonService.getPokemonByName(name).subscribe({
-      next: (pokemon) => {this.evolutionsPokemons.push(pokemon), console.log(this.evolutionsPokemons)}
+      next: (pokemon) => {
+        this.evolutionsPokemons.push(pokemon),
+          console.log(this.evolutionsPokemons);
+      },
     });
   }
 
@@ -126,6 +129,6 @@ export class BioPokemonComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.subsOnInit.unsusbcribe();
+    // this.subsOnInit.unsusbcribe();
   }
 }

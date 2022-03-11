@@ -1,6 +1,4 @@
-#pokemon-logo {
-    height: 85px;
-}
+
 
 .container {
     position: fixed;
@@ -19,10 +17,12 @@
 }
 
 .logo-container {
+    background-image: url(./../../../assets/img/pokemon-logo.png);
     width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 85px;
 }
 
 .logo-container img:hover {

@@ -48,7 +48,7 @@ export class PokemonService {
 
   //Método para obtener un pokemon por su nombre
   getPokemonByName(entry: string): Observable<PokemonResponse> {
-    let url = `http://pokeapi.co/api/v2/pokemon/${entry}`;
+    let url = `https://pokeapi.co/api/v2/pokemon/${entry}`;
     return this._http.get<PokemonResponse>(url);
   }
 

@@ -11,11 +11,12 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutAPIComponent } from './components/about-api/about-api.component';
 import { BioPokemonComponent } from './components/bio-pokemon/bio-pokemon.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, PokemonCardsComponent, HeaderComponent, HomeComponent, FooterComponent, AboutAPIComponent, BioPokemonComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue: '/PokedexAngular/'}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
