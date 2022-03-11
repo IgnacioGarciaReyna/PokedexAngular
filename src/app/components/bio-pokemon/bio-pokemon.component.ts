@@ -14,6 +14,7 @@ import { PokemonResponse } from 'src/app/interfaces/pokemonResponse.interface';
 import { ISpecies } from 'src/app/interfaces/pokemonSpecies.interface';
 import { PokemonColorsService } from 'src/app/services/pokemon-colors.service';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-bio-pokemon',
@@ -40,7 +41,8 @@ export class BioPokemonComponent implements OnInit {
     public _pokemonService: PokemonService,
     private _activatedRoute: ActivatedRoute,
     private _colorService: PokemonColorsService,
-    public _router: Router
+    public _router: Router,
+    private _location: Location,
   ) {}
 
   ngOnInit(): void {
@@ -106,6 +108,10 @@ export class BioPokemonComponent implements OnInit {
         });
       }
     );
+  }
+
+  public goBack(){
+    this._location.back()
   }
 
   public getColorTypesPokemon(typePokemon: string) {
