@@ -1,20 +1,24 @@
 <ng-container>
-  <div class="container">
-    
-
-    <div class="loadingSpinner fadeIn" *ngIf="loadingSpinner">
-      <h1>Loading...</h1>
-    </div>
+  <div class="loadingSpinner fadeIn" *ngIf="loadingSpinner">
+    <h1>Loading...</h1>
+  </div>
+  <div class="container" *ngIf="!loadingSpinner">
     <div class="cards-pagination fadeIn" *ngIf="!loadingSpinner">
       <button
+        id="previous-button"
         class="pagination-button previous"
         value="previous"
         (click)="loadNewPage($event)"
+        *ngIf="!loadingSpinner"
       >
-        Atras
+      &lt; &lt;
       </button>
       <div class="cards-container">
-        <div class="card fadeIn" *ngFor="let pokemon of pokemonList" (click)="goToBio(pokemon.name)">
+        <div
+          class="card fadeIn"
+          *ngFor="let pokemon of pokemonList"
+          (click)="goToBio(pokemon.name)"
+        >
           <img [src]="pokemon.sprites.front_default" class="card-img" />
           <div class="card-info">
             <p class="card-name">{{ pokemon.name }}</p>
@@ -22,7 +26,10 @@
           </div>
           <div class="card-typesContainer">
             <div class="type" *ngFor="let type of pokemon.types">
-              <div class="pill-card-type" [style.background]="getColorTypesPokemon(type.type.name)">
+              <div
+                class="pill-card-type"
+                [style.background]="getColorTypesPokemon(type.type.name)"
+              >
                 <p class="card-type">{{ type.type.name }}</p>
               </div>
             </div>
@@ -30,11 +37,13 @@
         </div>
       </div>
       <button
+        id="next-button"
         class="pagination-button next"
         value="next"
         (click)="loadNewPage($event)"
+        *ngIf="!loadingSpinner"
       >
-        Siguiente
+      &gt; &gt;
       </button>
     </div>
   </div>

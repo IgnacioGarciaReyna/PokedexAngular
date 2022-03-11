@@ -4,7 +4,9 @@
   width: auto;
   background-color: aliceblue;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto auto;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .column {
@@ -13,14 +15,24 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
+}
+
+.button-container{
+  height: 100%;
+}
+
+.pagination-button{
+  margin: 10px;
 }
 
 .name-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  width: 360px;
 }
 
 .pokemon-number {
@@ -35,10 +47,18 @@
 
 .evolutions-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .evolutions {
   margin: 10px;
+}
+
+.img-evolution{
+  height: 96px;
+  width: 96px;
+  margin: 0px 3px;
 }
 
 .stats {
@@ -48,12 +68,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 350px;
+  height: 280px;
+  width: auto;
   margin: 10px;
 }
 
 .stats-container {
-  margin: 10px;
+  margin: 5px;
   display: flex;
   flex-direction: row;
   justify-content: end;
@@ -63,10 +84,10 @@
 }
 
 .stat-column {
-  margin: 10px;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
+  width: 85px;
 }
 
 .stat-name{
@@ -83,18 +104,12 @@
   background-color: rgb(206, 228, 228);
   border: 1px solid #f0f8ff;
   height: 10px;
-  width: 80px;
+  width: 60px;
 }
 
 .full-slot {
   background-color: rgb(11, 212, 212);
   border: 1px solid #f0f8ff;
-}
-
-.pictures {
-  display: flex;
-  height: 150px;
-  width: 150px;
 }
 
 .img-pokemon {
@@ -134,16 +149,6 @@
   margin-left: 10px;
 }
 
-.loadingSpinner{
-  height: 75vh;
-  margin-top: 90px;
-  width: 100vw;
-  background-color: aliceblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .isMythical{
   background-color: rgb(186, 134, 235);
 }
@@ -159,7 +164,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 100px;
 }
 
 .evolutions-container{
@@ -183,6 +187,7 @@
 .name-evolution-container{
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -200,16 +205,28 @@
   cursor: pointer;
 }
 
-
+@media (max-height: 680px) {
+  .container {
+    margin-bottom: 80px;
+  }
+}
 
 @media (max-width: 1190px) {
-  
+  .container {
+    grid-template-columns: auto;
+    margin-bottom: 80px;
+    margin-top: 120px
+  }
+
+  .pagination-button{
+    position: fixed;
+    top: 85px;
+    margin: 5px;
+  }
 }
 
 @media (max-width: 950px) {
-  .container {
-    grid-template-columns: auto;
-  }
+  
 }
 
 @media (max-width: 795px) {
@@ -243,6 +260,7 @@
 @media (max-width: 570px) {
   .stats {
     height: auto;
+    width: 100%;
   }
 
   .stat-name{

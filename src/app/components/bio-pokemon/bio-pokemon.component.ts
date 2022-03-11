@@ -37,12 +37,14 @@ export class BioPokemonComponent implements OnInit {
 
   private subsOnInit: any;
 
+  public pokemonVarieties: any[] = [];
+
   constructor(
     public _pokemonService: PokemonService,
     private _activatedRoute: ActivatedRoute,
     private _colorService: PokemonColorsService,
     public _router: Router,
-    private _location: Location,
+    private _location: Location
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class BioPokemonComponent implements OnInit {
       (params: ParamMap) => {
         this.evolutionNames = [];
         this.evolutionsPokemons = [];
+        this.pokemonVarieties = [];
         this.loadingSpinner = true;
         this.pokemonName = params.get('pokemonName');
         this._pokemonService.getPokemonByName(this.pokemonName).subscribe({
@@ -64,6 +67,20 @@ export class BioPokemonComponent implements OnInit {
                         this.pokemonSpecies.has_gender_differences
                       )),
                     console.log(this.pokemonSpecies);
+                  for (
+                    let i = 0;
+                    i < this.pokemonSpecies.varieties.length;
+                    i++
+                  ) {
+                    this._pokemonService
+                      .getPokemonByName(
+                        this.pokemonSpecies.varieties[i].pokemon.name
+                      )
+                      .subscribe({
+                        next: (variety) => this.pokemonVarieties.push(variety),
+                      });
+                  }
+                  console.log(this.pokemonVarieties);
                 },
                 complete: () =>
                   this._pokemonService
@@ -71,9 +88,7 @@ export class BioPokemonComponent implements OnInit {
                     .pipe(
                       pluck('chain'),
                       tap((chain: IChain | any) => {
-                        console.log(chain);
                         this.evolutionNames.push(chain.species.name);
-                        console.log(this.evolutionNames);
                       }),
                       pluck('evolves_to'),
                       mergeMap((evolves_to) =>
@@ -87,8 +102,7 @@ export class BioPokemonComponent implements OnInit {
                       mergeMap((evolves_to) =>
                         from(evolves_to).pipe(
                           tap((evolves: Evolvesto | any) => {
-                            this.evolutionNames.push(evolves.species.name),
-                              console.log(this.evolutionNames);
+                            this.evolutionNames.push(evolves.species.name);
                           })
                         )
                       ),
@@ -97,8 +111,7 @@ export class BioPokemonComponent implements OnInit {
                     .subscribe({
                       complete: () => {
                         for (let i = 0; i < this.evolutionNames.length; i++) {
-                          console.log(this.evolutionNames[i]),
-                            this.getEvolution(this.evolutionNames[i]);
+                          this.getEvolution(this.evolutionNames[i]);
                         }
                         this.loadingSpinner = false;
                       },
@@ -110,8 +123,8 @@ export class BioPokemonComponent implements OnInit {
     );
   }
 
-  public goBack(){
-    this._location.back()
+  public goBack() {
+    this._location.back();
   }
 
   public getColorTypesPokemon(typePokemon: string) {
@@ -121,8 +134,7 @@ export class BioPokemonComponent implements OnInit {
   public getEvolution(name: string) {
     return this._pokemonService.getPokemonByName(name).subscribe({
       next: (pokemon) => {
-        this.evolutionsPokemons.push(pokemon),
-          console.log(this.evolutionsPokemons);
+        this.evolutionsPokemons.push(pokemon);
       },
     });
   }

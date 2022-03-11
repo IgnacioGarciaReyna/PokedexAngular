@@ -2,35 +2,46 @@
   <h1>Loading...</h1>
 </div>
 <div class="container fadeIn" *ngIf="!loadingSpinner">
-  <div class="column fadeIn" *ngIf="!loadingSpinner">
+  <div class="button-container">
     <button class="pagination-button" (click)="goBack()">Back</button>
+  </div>
+  <div class="column fadeIn" *ngIf="!loadingSpinner">
     <div class="name-container">
       <p class="pokemon-number">#{{ pokemon?.id }}</p>
       <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>
     </div>
-    <div class="pictures">
-      <div class="picture-column">
-        <!-- <img
+
+    <div class="picture-column">
+      <!-- <img
           class="img-pokemon"
           [src]="pokemon?.sprites?.other?.['official-artwork']?.front_default"
           alt=""
           srcset=""
         /> -->
-        <!-- <img
+      <!-- <img
           class="img-pokemon"
           [src]="pokemon?.sprites?.other?.home?.front_default"
           alt=""
           srcset=""
         /> -->
-        <img
-          class="img-pokemon"
-          [src]="pokemon?.sprites?.other?.dream_world?.front_default"
-          alt=""
-          srcset=""
-        />
-      </div>
+      <img
+        *ngIf="pokemon?.sprites?.other?.dream_world?.front_default != null"
+        class="img-pokemon"
+        [src]="pokemon?.sprites?.other?.dream_world?.front_default"
+        alt=""
+        srcset=""
+      />
+      <img
+        *ngIf="pokemon?.sprites?.other?.dream_world?.front_default == null"
+        class="img-pokemon"
+        [src]="pokemon?.sprites?.other?.['official-artwork']?.front_default"
+        alt=""
+        srcset=""
+      />
     </div>
+  </div>
 
+  <div class="column">
     <div class="pokemon-info-container">
       <div class="types pokemon-info">
         <h4>Types:</h4>
@@ -98,6 +109,29 @@
             {{ ability.ability.name | titlecase }}
           </li>
         </ul>
+      </div>
+    </div>
+    <div class="evolutions" *ngIf="pokemonVarieties.length > 1">
+      <h4>Versiones:</h4>
+      <div class="evolutions-container">
+        <div
+          class=""
+          *ngFor="let variety of pokemonVarieties"
+          (click)="goToBio(variety.name)"
+        >
+          <div class="evolution" *ngIf="variety?.name != pokemon?.name">
+            <div class="name-evolution-container">
+              <p class="name-evolution">{{ variety.name | titlecase }}</p>
+              <p class="id-evolution">#{{ variety.id }}</p>
+            </div>
+            <img
+              class="img-evolution"
+              [src]="variety?.sprites?.front_default"
+              alt=""
+              srcset=""
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -229,8 +263,8 @@
           (click)="goToBio(evolution.name)"
         >
           <div class="name-evolution-container">
-            <p class="id-evolution">#{{ evolution.id }}</p>
             <p class="name-evolution">{{ evolution.name | titlecase }}</p>
+            <p class="id-evolution">#{{ evolution.id }}</p>
           </div>
           <img
             class="img-evolution"
