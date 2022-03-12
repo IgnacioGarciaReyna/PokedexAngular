@@ -2,7 +2,7 @@ import { Chain } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { from, Observable, pipe, Subscriber } from 'rxjs';
-import { debounceTime, mergeMap, pluck, tap } from 'rxjs/operators';
+import { debounceTime, delay, mergeMap, pluck, tap } from 'rxjs/operators';
 import {
   Evolvesto,
   Evolvesto2,
@@ -38,6 +38,8 @@ export class BioPokemonComponent implements OnInit {
   private subsOnInit: any;
 
   public pokemonVarieties: any[] = [];
+
+  
 
   constructor(
     public _pokemonService: PokemonService,
@@ -78,6 +80,12 @@ export class BioPokemonComponent implements OnInit {
                       )
                       .subscribe({
                         next: (variety) => this.pokemonVarieties.push(variety),
+                        complete: () => {
+                        
+                          setTimeout(() => {
+                            this.loadingSpinner = false;
+                          }, 1000);
+                        },
                       });
                   }
                   console.log(this.pokemonVarieties);
@@ -113,7 +121,6 @@ export class BioPokemonComponent implements OnInit {
                         for (let i = 0; i < this.evolutionNames.length; i++) {
                           this.getEvolution(this.evolutionNames[i]);
                         }
-                        this.loadingSpinner = false;
                       },
                     }),
               });

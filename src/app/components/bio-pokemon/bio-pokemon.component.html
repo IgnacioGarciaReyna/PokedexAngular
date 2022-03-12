@@ -11,7 +11,7 @@
       <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>
     </div>
 
-    <div class="picture-column">
+    <div class="picture-column fadeIn">
       <!-- <img
           class="img-pokemon"
           [src]="pokemon?.sprites?.other?.['official-artwork']?.front_default"
@@ -26,7 +26,7 @@
         /> -->
       <img
         *ngIf="pokemon?.sprites?.other?.dream_world?.front_default != null"
-        class="img-pokemon"
+        class="img-pokemon fadeIn"
         [src]="pokemon?.sprites?.other?.dream_world?.front_default"
         alt=""
         srcset=""
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="column">
+  <div class="column fadeIn">
     <div class="pokemon-info-container">
       <div class="types pokemon-info">
         <h4>Types:</h4>
@@ -115,14 +115,14 @@
       <h4>Versiones:</h4>
       <div class="evolutions-container">
         <div
-          class=""
+          class="fadeIn"
           *ngFor="let variety of pokemonVarieties"
           (click)="goToBio(variety.name)"
         >
           <div class="evolution" *ngIf="variety?.name != pokemon?.name">
             <div class="name-evolution-container">
-              <p class="name-evolution">{{ variety.name | titlecase }}</p>
-              <p class="id-evolution">#{{ variety.id }}</p>
+              <p class="name-evolution pEvolution">{{ variety.name | titlecase }}</p>
+              <p class="id-evolution pEvolution">#{{ variety.id }}</p>
             </div>
             <img
               class="img-evolution"
@@ -258,7 +258,7 @@
       <h4>Evolución:</h4>
       <div class="evolutions-container">
         <div
-          class="evolution"
+          class="evolution fadeIn"
           *ngFor="let evolution of evolutionsPokemons"
           (click)="goToBio(evolution.name)"
         >
