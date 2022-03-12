@@ -96,9 +96,8 @@
   }
   .tittle-container {
     width: 80vw;
+    justify-content: start;
   }
-
-  
 
   .container {
     background-position: 80%;
@@ -107,7 +106,7 @@
 
 @media (max-width: 680px) {
   .welcome-tittle {
-    font-size: 35px;
+    font-size: 50px;
   }
   .container {
     justify-content: start;

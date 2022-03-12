@@ -81,6 +81,19 @@
   @media (max-width: 680px) {
     .a-navigation {
         font-size: 15px;
+        margin: 5px;
+    }
+
+    .a-navigation-container{
+        border: 1px aliceblue solid;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .a-navigation-container:hover {
+        border: 1px yellow solid;
     }
 
     #searchPokemons{

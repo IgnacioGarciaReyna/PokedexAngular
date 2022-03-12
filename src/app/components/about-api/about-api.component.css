@@ -1,6 +1,6 @@
 .container {
-    margin-top: 90px;
-    height: 78vh;
+    margin: 90px 0px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,10 +10,14 @@
 }
 
 .about-section {
-    width: 50%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     margin: 20px;
+}
+
+.about-section > p {
+    margin: 10px 0px;
 }
