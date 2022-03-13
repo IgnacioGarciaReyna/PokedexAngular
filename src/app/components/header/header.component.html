@@ -8,6 +8,17 @@
         srcset=""
       />
     </div>
+    <div class="header fadeIn">
+      <div class="a-navigation-container">
+        <a class="a-navigation" routerLink="home">Home</a>
+      </div>
+      <div class="a-navigation-container">
+        <a class="a-navigation" routerLink="pokemons">Pokemons</a>
+      </div>
+      <div class="a-navigation-container">
+        <a class="a-navigation" routerLink="about">About</a>
+      </div>
+    </div>
     <div class="search-container">
       <!-- <input
         type="search"
@@ -28,21 +39,10 @@
         type="search"
       />
       <datalist id="namesListOptions">
-        <option [value]="name" *ngFor="let name of namesList">
-          {{ name }}
+        <option [value]="name | titlecase" *ngFor="let name of namesList">
+          {{ name | titlecase }}
         </option>
       </datalist>
-    </div>
-    <div class="header fadeIn">
-      <div class="a-navigation-container">
-        <a class="a-navigation" routerLink="home">Home</a>
-      </div>
-      <div class="a-navigation-container">
-        <a class="a-navigation" routerLink="pokemons">Pokemons</a>
-      </div>
-      <div class="a-navigation-container">
-        <a class="a-navigation" routerLink="about">About</a>
-      </div>
     </div>
   </div>
 </div>
