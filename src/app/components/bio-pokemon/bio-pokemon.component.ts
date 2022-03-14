@@ -39,8 +39,6 @@ export class BioPokemonComponent implements OnInit {
 
   public pokemonVarieties: any[] = [];
 
-  
-
   constructor(
     public _pokemonService: PokemonService,
     private _activatedRoute: ActivatedRoute,
@@ -81,7 +79,9 @@ export class BioPokemonComponent implements OnInit {
                       .subscribe({
                         next: (variety) => this.pokemonVarieties.push(variety),
                         complete: () => {
-                        
+                          this.pokemonVarieties.sort(function (a, b) {
+                            return a.id - b.id;
+                          });
                           setTimeout(() => {
                             this.loadingSpinner = false;
                           }, 1000);
@@ -142,6 +142,11 @@ export class BioPokemonComponent implements OnInit {
     return this._pokemonService.getPokemonByName(name).subscribe({
       next: (pokemon) => {
         this.evolutionsPokemons.push(pokemon);
+      },
+      complete: () => {
+        this.evolutionsPokemons.sort(function (a, b) {
+          return a.id - b.id;
+        });
       },
     });
   }
