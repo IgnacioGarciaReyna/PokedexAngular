@@ -203,15 +203,6 @@
 .pagination-button {
   height: 40px;
   width: 60px;
-  border-radius: 20%;
-  background: aliceblue;
-  color: #202124;
-}
-
-.pagination-button:hover {
-  background: #202124;
-  color: aliceblue;
-  cursor: pointer;
 }
 
 @media (max-height: 680px) {

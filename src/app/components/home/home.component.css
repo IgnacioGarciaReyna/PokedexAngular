@@ -19,7 +19,6 @@
   }
   4% {
     opacity: 1;
-    color: #202124;
   }
   48% {
     opacity: 1;
@@ -33,32 +32,27 @@
     /* fuego */
     background-image: url(./../../../assets/img/wallpapersden.com_ghost-pokemon_wxl.jpg);
     opacity: 0;
-    color: #202124;
   }
   52% {
     background-image: url(./../../../assets/img/wallpapersden.com_ghost-pokemon_wxl.jpg);
     opacity: 1;
-    color: aliceblue;
   }
   100% {
     background-image: url(./../../../assets/img/wallpapersden.com_ghost-pokemon_wxl.jpg);
     opacity: 1;
-    color: aliceblue;
   }
 }
 
 .tittle-container {
+  margin-left: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 50%;
-}
-
-.mini-tittle-container {
-  display: flex;
-  width: 50%;
+  height: 50vh;
+  width: auto;
+  background-color: aliceblue;
+  border-radius: 5px;
 }
 
 .welcome-tittle {
@@ -67,12 +61,16 @@
 
 #tittle-end {
   align-items: flex-end;
-  height: 40%;
 }
 
 #tittle-center {
-  height: 50%;
   align-items: flex-start;
+}
+
+.pagination-button {
+  height: 40px;
+  width: 180px;
+  margin: 30px;
 }
 
 @media (max-width: 1280px) {
