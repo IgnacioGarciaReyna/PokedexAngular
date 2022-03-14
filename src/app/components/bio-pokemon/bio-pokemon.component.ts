@@ -138,6 +138,14 @@ export class BioPokemonComponent implements OnInit {
     return this._colorService.getColorByType(typePokemon);
   }
 
+  public getColorEggsPokemon(eggPokemon: string) {
+    return this._colorService.getColorByEgg(eggPokemon);
+  }
+
+  public getPokedexColor(colorName: string) {
+    return this._colorService.getColorByPokedex(colorName);
+  }
+
   public getEvolution(name: string) {
     return this._pokemonService.getPokemonByName(name).subscribe({
       next: (pokemon) => {

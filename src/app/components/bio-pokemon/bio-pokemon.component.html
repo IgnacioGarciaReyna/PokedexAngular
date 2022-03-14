@@ -1,14 +1,23 @@
 <div class="loadingSpinner fadeIn" *ngIf="loadingSpinner">
   <h1>Loading...</h1>
 </div>
-<div class="container fadeIn" *ngIf="!loadingSpinner">
+<div
+  class="container fadeIn"
+  *ngIf="!loadingSpinner"
+  [style.background]="getPokedexColor(pokemonSpecies?.color.name)?.primaryColor"
+  [style.align-items]="pokemonVarieties.length > 4 ? 'baseline' : 'center'"
+>
   <div class="button-container">
     <button class="pagination-button" (click)="goBack()">Back</button>
   </div>
   <div class="column fadeIn" *ngIf="!loadingSpinner">
     <div class="name-container">
       <p class="pokemon-number">#{{ pokemon?.id }}</p>
-      <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>
+      <h1
+        class="pokemon-name"
+      >
+        {{ pokemon?.name | titlecase }}
+      </h1>
     </div>
 
     <div class="picture-column fadeIn">
@@ -42,7 +51,12 @@
   </div>
 
   <div class="column fadeIn">
-    <div class="pokemon-info-container">
+    <div
+      class="pokemon-info-container"
+      [style.background]="
+        getPokedexColor(pokemonSpecies?.color.name)?.secondaryColor
+      "
+    >
       <div class="types pokemon-info">
         <h4>Types:</h4>
         <div class="type" *ngFor="let type of pokemon?.types">
@@ -56,9 +70,16 @@
       </div>
       <div class="egg-groups pokemon-info">
         <h4>Egg Groups:</h4>
-        <p *ngFor="let group of pokemonSpecies?.egg_groups">
-          {{ group?.name | titlecase }}
-        </p>
+        <div class="type" *ngFor="let group of pokemonSpecies?.egg_groups">
+          <div
+            class="pill-card-type"
+            [style.background]="getColorEggsPokemon(group?.name)"
+          >
+            <p class="card-type">
+              {{ group?.name | titlecase }}
+            </p>
+          </div>
+        </div>
       </div>
       <div
         class="otros-container pokemon-info"
@@ -111,7 +132,13 @@
         </ul>
       </div>
     </div>
-    <div class="evolutions" *ngIf="pokemonVarieties.length > 1">
+    <div
+      class="evolutions"
+      *ngIf="pokemonVarieties.length > 1"
+      [style.background]="
+        getPokedexColor(pokemonSpecies?.color.name)?.secondaryColor
+      "
+    >
       <h4>Versiones:</h4>
       <div class="evolutions-container">
         <div
@@ -121,7 +148,9 @@
         >
           <div class="evolution" *ngIf="variety?.name != pokemon?.name">
             <div class="name-evolution-container">
-              <p class="name-evolution pEvolution">{{ variety.name | titlecase }}</p>
+              <p class="name-evolution pEvolution">
+                {{ variety.name | titlecase }}
+              </p>
               <p class="id-evolution pEvolution">#{{ variety.id }}</p>
             </div>
             <img
@@ -137,7 +166,13 @@
   </div>
 
   <div class="column">
-    <div class="stats fadeIn" *ngIf="!loadingSpinner">
+    <div
+      class="stats fadeIn"
+      *ngIf="!loadingSpinner"
+      [style.background]="
+        getPokedexColor(pokemonSpecies?.color.name)?.secondaryColor
+      "
+    >
       <h3>Stats:</h3>
       <div class="stats-container">
         <div class="stat-column" *ngFor="let stats of pokemon?.stats">
@@ -254,7 +289,13 @@
         </div>
       </div>
     </div>
-    <div class="evolutions" *ngIf="evolutionsPokemons.length > 1">
+    <div
+      class="evolutions"
+      *ngIf="evolutionsPokemons.length > 1"
+      [style.background]="
+        getPokedexColor(pokemonSpecies?.color.name)?.secondaryColor
+      "
+    >
       <h4>Evolución:</h4>
       <div class="evolutions-container">
         <div

@@ -18,6 +18,7 @@
           class="card fadeIn"
           *ngFor="let pokemon of pokemonList"
           (click)="goToBio(pokemon.name)"
+          
         >
           <img [src]="pokemon.sprites.front_default" class="card-img" />
           <div class="card-info">

@@ -76,4 +76,5 @@ export class PokemonCardsComponent implements OnInit {
   public getColorTypesPokemon(typePokemon: string) {
     return this._colorService.getColorByType(typePokemon);
   }
+
 }
