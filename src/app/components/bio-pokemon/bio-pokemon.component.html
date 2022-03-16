@@ -89,7 +89,7 @@
           pokemonSpecies.is_mythical
         "
       >
-        <h4>Otros:</h4>
+        <h4>Others:</h4>
         <div class="isBaby pill-card-type" *ngIf="pokemonSpecies?.is_baby">
           <p class="card-type">Baby</p>
         </div>
@@ -116,12 +116,12 @@
         <p>{{ pokemonSpecies?.generation.name | titlecase }}</p>
       </div>
       <div class="growth-rate pokemon-info">
-        <h4>Tasa de crecimiento:</h4>
+        <h4>Growth rate:</h4>
         <p>{{ pokemonSpecies?.growth_rate.name | titlecase }}</p>
       </div>
       <div class="hasDenderDifferences pokemon-info">
-        <h4>Diferencias de género:</h4>
-        <p>{{ hasDenderDifferences }}</p>
+        <h4>Gender diferences:</h4>
+        <p>{{ hasGenderDifferences }}</p>
       </div>
       <div class="abilities">
         <h4>Abilities:</h4>
@@ -139,7 +139,7 @@
         getPokedexColor(pokemonSpecies?.color.name)?.secondaryColor
       "
     >
-      <h4>Versiones:</h4>
+      <h4>Versions:</h4>
       <div class="evolutions-container">
         <div
           class="fadeIn"
@@ -296,7 +296,7 @@
         getPokedexColor(pokemonSpecies?.color.name)?.secondaryColor
       "
     >
-      <h4>Evolución:</h4>
+      <h4>Evolution:</h4>
       <div class="evolutions-container">
         <div
           class="evolution fadeIn"

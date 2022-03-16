@@ -24,7 +24,7 @@ import { Location } from '@angular/common';
 export class BioPokemonComponent implements OnInit {
   public pokemon: IPokemonURL | undefined = undefined;
   public pokemonSpecies: ISpecies | any = undefined;
-  public hasDenderDifferences: string = ' ';
+  public hasGenderDifferences: string = ' ';
 
   //Evolución
   public evolutionChain: IEvolutionChain | any = undefined;
@@ -62,7 +62,7 @@ export class BioPokemonComponent implements OnInit {
               this._pokemonService.getUrl(this.pokemon?.species.url).subscribe({
                 next: (species) => {
                   (this.pokemonSpecies = species),
-                    (this.hasDenderDifferences =
+                    (this.hasGenderDifferences =
                       this._pokemonService.characteristicsConditional(
                         this.pokemonSpecies.has_gender_differences
                       )),
