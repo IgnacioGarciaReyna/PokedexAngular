@@ -52,13 +52,13 @@ body{
 
   .pagination-button {
     border-radius: 20%;
-    background: aliceblue;
+    background: #FFFFFF;
     color: #202124;
   }
 
   .pagination-button:hover {
     background: #202124;
-    color: aliceblue;
+    color: #FFFFFF;
     cursor: pointer;
   }
 
