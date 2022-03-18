@@ -57,11 +57,13 @@
 
 .welcome-tittle {
   font-size: 60px;
+  font-weight: bold;
   -webkit-text-stroke: .5px #2C70B4;
   color: #FFCB05;
 }
 .welcome-subtittle {
   -webkit-text-stroke: .1px white;
+  font-weight: 500;
   color: #202124;
   font-size: 25px;
 }
