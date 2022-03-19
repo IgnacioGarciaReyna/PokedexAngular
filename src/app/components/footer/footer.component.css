@@ -24,6 +24,15 @@
   align-items: center;
 }
 
+.footer-item > a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.footer-icon-pokeapi{
+  height: 25px;
+}
+
 .footer-link{
     display: flex;
     align-items: center;
