@@ -45,6 +45,7 @@ body{
     margin-top: 90px;
     height: 75vh;
     width: 100vw;
+    font-weight: 300;
     background-color: aliceblue;
     display: flex;
     align-items: center;

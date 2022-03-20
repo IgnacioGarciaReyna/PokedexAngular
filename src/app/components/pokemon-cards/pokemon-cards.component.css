@@ -58,6 +58,10 @@
   justify-content: space-around;
 }
 
+.card-type{
+  font-weight: 600;
+}
+
 .card-name {
   text-transform: capitalize;
   font-size: 30px;
