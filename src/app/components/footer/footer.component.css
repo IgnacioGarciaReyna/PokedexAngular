@@ -29,6 +29,10 @@
   color: aliceblue;
 }
 
+.madeWith{
+  margin: 0px 2px;
+}
+
 .footer-icon-pokeapi{
   height: 25px;
 }
