@@ -33,7 +33,7 @@ export class PokemonCardsComponent implements OnInit {
     this._pokemonService.getPokemons(this.page).subscribe({
       next: (pokemon: IPokemon | any) => {
         this.loadingSpinner = true;
-        console.log(pokemon);
+        // console.log(pokemon);
         this.pokemonList.push(pokemon);
       },
       complete: () => {

@@ -58,15 +58,15 @@ export class BioPokemonComponent implements OnInit {
         this._pokemonService.getPokemonByName(this.pokemonName).subscribe({
           next: (object: IPokemonURL | any) => (this.pokemon = object),
           complete: () => {
-            console.log(this.pokemon),
+            // console.log(this.pokemon),
               this._pokemonService.getUrl(this.pokemon?.species.url).subscribe({
                 next: (species) => {
                   (this.pokemonSpecies = species),
                     (this.hasGenderDifferences =
                       this._pokemonService.characteristicsConditional(
                         this.pokemonSpecies.has_gender_differences
-                      )),
-                    console.log(this.pokemonSpecies);
+                      ));
+                    // console.log(this.pokemonSpecies);
                   for (
                     let i = 0;
                     i < this.pokemonSpecies.varieties.length;
@@ -87,8 +87,8 @@ export class BioPokemonComponent implements OnInit {
                           }, 1000);
                         },
                       });
-                  }
-                  console.log(this.pokemonVarieties);
+                  };
+                  // console.log(this.pokemonVarieties);
                 },
                 complete: () =>
                   this._pokemonService
@@ -113,8 +113,8 @@ export class BioPokemonComponent implements OnInit {
                             this.evolutionNames.push(evolves.species.name);
                           })
                         )
-                      ),
-                      tap(console.log)
+                      )
+                      // tap(console.log)
                     )
                     .subscribe({
                       complete: () => {
