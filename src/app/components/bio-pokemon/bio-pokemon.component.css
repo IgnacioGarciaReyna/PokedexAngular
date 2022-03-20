@@ -214,7 +214,6 @@
 @media (max-width: 1190px) {
   .container {
     grid-template-columns: auto;
-    margin-bottom: 90px;
   }
 
   .name-container{
@@ -229,6 +228,10 @@
 
   .evolutions {
     margin-bottom: 0px;
+  }
+
+  .endOffScroll{
+    margin-bottom: 40px;
   }
 }
 
