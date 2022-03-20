@@ -45,6 +45,10 @@
   margin: 5px;
 }
 
+.pill-card-type{
+  margin: 0 3px;
+}
+
 .evolutions-container {
   display: flex;
   align-items: center;
