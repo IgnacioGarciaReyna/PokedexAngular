@@ -1,71 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    font-family: 'Titillium Web', sans-serif;
-    background-color: #F0F8FF;
-    font-weight: lighter;
-    width: 100vw;
+body {
+  font-family: "Titillium Web", sans-serif;
+  background-color: #f0f8ff;
+  font-weight: lighter;
+  width: 100vw;
 }
 
-.container{
-    width: 100%;
+.container {
+  width: 100%;
 }
 
-.fadeIn{
-    animation: fadeIn .5s ease-in-out;
+.fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .card-type {
-    text-transform: capitalize;
-    color: black;
-    font-weight: bold;
-    margin: 5px;
-    width: auto;
-  }
-  
-  .pill-card-type{
-    border-radius: 5px;
-    width: auto;
-  }
+  text-transform: capitalize;
+  color: black;
+  font-weight: bold;
+  margin: 5px;
+  width: auto;
+}
 
-  .loadingSpinner{
-    margin-top: 90px;
-    height: 75vh;
-    width: 100vw;
-    font-weight: 300;
-    background-color: aliceblue;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.pill-card-type {
+  border-radius: 5px;
+  width: auto;
+}
 
-  .pagination-button {
-    border-radius: 20%;
-    background: #FFFFFF;
-    color: #202124;
-  }
+.loadingSpinner {
+  margin-top: 90px;
+  height: 75vh;
+  width: 100vw;
+  font-weight: 300;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .pagination-button:hover {
-    background: #202124;
-    color: #FFFFFF;
-    cursor: pointer;
-  }
+.pagination-button {
+  border-radius: 20%;
+  background: #ffffff;
+  color: #202124;
+}
 
-  /* @media (min-width: 1500px) {
-    .container{
-      height: 78vh;
-    }
-  } */
+.pagination-button:hover {
+  background: #202124;
+  color: #ffffff;
+  cursor: pointer;
+}
