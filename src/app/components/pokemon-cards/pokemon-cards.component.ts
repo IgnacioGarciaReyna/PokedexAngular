@@ -1,9 +1,6 @@
 import { Component, Input, OnInit, Type } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime, delay, map, switchMap, tap } from 'rxjs/operators';
-import { IPokemon, Pokemon } from 'src/app/interfaces/IPokemon.interface';
-import { PokemonResponse } from 'src/app/interfaces/pokemonResponse.interface';
+import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonColorsService } from 'src/app/services/pokemon-colors.service';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
 

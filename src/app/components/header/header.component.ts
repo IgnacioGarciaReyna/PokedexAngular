@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime, filter, map, switchMap, tap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { IPokemon } from 'src/app/interfaces/IPokemon.interface';
 import { PokemonService } from 'src/app/services/pokemon-service.service';
 
@@ -37,39 +37,7 @@ export class HeaderComponent implements OnInit {
       .pipe(
         map((name) => (name = name.toLowerCase())),
         filter((name) => this.namesList.includes(name))
-        // debounceTime(1500)
-        // tap({
-        //   next: () => {
-        //     this.loadingSpinner = true;
-        //     this.pokemonList = [];
-        //   },
-        // }),
-        // map((entry: string) => {
-        //   this.filteredOptions = this.namesList.filter((pokemonName) =>
-        //     pokemonName.toLowerCase().includes(entry.toLowerCase())
-        //   );
-        //   this.filteredOptions.map((option: string) =>
-        //     this._pokemonService.getPokemonByName(option.toLocaleLowerCase())
-        //   );
-        //   return entry;
-        // }),
-        // switchMap((entry: string) => {
-        //   if (entry == this.filteredOptions.find((option) => option == entry))
-        //     return this._pokemonService.getPokemonByName(
-        //       entry.toLocaleLowerCase()
-        //     );
-        //   return this._pokemonService.getPokemons(this.page);
-        // }),
-        // tap({
-        //   error: console.log,
-        // })
       )
-      // .subscribe({
-      //   next: (pokemon: IPokemon) => {
-      //     this.pokemonList.push(pokemon);
-      //     this.loadingSpinner = false;
-      //   },
-      // });
       .subscribe({
         next: (name) => {
           this._router.navigate(['bio', name]),

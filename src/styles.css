@@ -64,8 +64,8 @@ body{
     cursor: pointer;
   }
 
-  @media (min-width: 1500px) {
+  /* @media (min-width: 1500px) {
     .container{
       height: 78vh;
     }
-  }
+  } */
